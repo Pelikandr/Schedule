@@ -116,8 +116,35 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="TestAppend"/>
                                 <connections>
-                                    <action selector="saveButton:" destination="brd-D4-IYB" eventType="touchUpInside" id="svJ-KC-hLS"/>
-                                    <segue destination="49e-Tb-3d3" kind="presentation" id="KWt-Ud-Oip"/>
+                                    <action selector="saveButton:" destination="brd-D4-IYB" eventType="touchUpInside" id="R76-ah-8Yn"/>
+                                    <segue destination="jyt-PB-fnC" kind="presentation" id="kEs-lh-BAO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKf-XL-82K">
+                                <rect key="frame" x="16" y="123" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="tuesday"/>
+                                <connections>
+                                    <action selector="tue:" destination="brd-D4-IYB" eventType="touchUpInside" id="jOX-sv-vkE"/>
+                                    <segue destination="jyt-PB-fnC" kind="presentation" id="aNf-cG-FMC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abv-m1-DMv">
+                                <rect key="frame" x="19" y="161" width="78" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="wednesday"/>
+                                <connections>
+                                    <action selector="wed:" destination="brd-D4-IYB" eventType="touchUpInside" id="b70-aT-5cW"/>
+                                    <segue destination="jyt-PB-fnC" kind="presentation" id="UJN-UB-Pqk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fw0-VD-Dk9">
+                                <rect key="frame" x="28" y="199" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="thursday"/>
+                                <connections>
+                                    <action selector="thu:" destination="brd-D4-IYB" eventType="touchUpInside" id="ZsF-Gz-n2H"/>
+                                    <segue destination="jyt-PB-fnC" kind="presentation" id="5NQ-Lw-emx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -127,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jna-b8-Ilc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286" y="-320"/>
+            <point key="canvasLocation" x="2285.5999999999999" y="-320.68965517241384"/>
         </scene>
         <!--Tasks-->
         <scene sceneID="wg7-f3-ORb">
@@ -176,7 +203,6 @@
         <!--Shedule-->
         <scene sceneID="Egb-Er-q0h">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gUA-60-Wdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jyt-PB-fnC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Shedule" image="first" id="acW-dT-cKf"/>
                     <toolbarItems/>
@@ -189,6 +215,7 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="QeF-Dk-FYt"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUA-60-Wdr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
@@ -197,4 +224,7 @@
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="aNf-cG-FMC"/>
+    </inferredMetricsTieBreakers>
 </document>

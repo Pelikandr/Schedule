@@ -15,6 +15,9 @@
 		87B14EA822E9E13600471C38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B14EA622E9E13600471C38 /* LaunchScreen.storyboard */; };
 		87B14EB322E9E13700471C38 /* SheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14EB222E9E13700471C38 /* SheduleTests.swift */; };
 		87B14EBE22E9E13700471C38 /* SheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14EBD22E9E13700471C38 /* SheduleUITests.swift */; };
+		87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA492F22EA1A67001AE8C9 /* DataSource.swift */; };
+		87BA493222EA1D77001AE8C9 /* SheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA493122EA1D77001AE8C9 /* SheduleCell.swift */; };
+		87BA493422EA2516001AE8C9 /* SheduleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA493322EA2516001AE8C9 /* SheduleDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		87B14EB922E9E13700471C38 /* SheduleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SheduleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B14EBD22E9E13700471C38 /* SheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleUITests.swift; sourceTree = "<group>"; };
 		87B14EBF22E9E13700471C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87BA492F22EA1A67001AE8C9 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		87BA493122EA1D77001AE8C9 /* SheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleCell.swift; sourceTree = "<group>"; };
+		87BA493322EA2516001AE8C9 /* SheduleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871F76A822EB0D0800BC6B2E /* Recources */ = {
+			isa = PBXGroup;
+			children = (
+				87B14EA422E9E13600471C38 /* Assets.xcassets */,
+				87B14EA922E9E13600471C38 /* Info.plist */,
+			);
+			name = Recources;
+			sourceTree = "<group>";
+		};
 		87B14E8F22E9E12900471C38 = {
 			isa = PBXGroup;
 			children = (
@@ -100,12 +115,14 @@
 			isa = PBXGroup;
 			children = (
 				87B14E9B22E9E12A00471C38 /* AppDelegate.swift */,
+				87BA492F22EA1A67001AE8C9 /* DataSource.swift */,
 				87B14E9D22E9E12A00471C38 /* Shedule.swift */,
+				87BA493122EA1D77001AE8C9 /* SheduleCell.swift */,
+				87BA493322EA2516001AE8C9 /* SheduleDetail.swift */,
 				87B14E9F22E9E12A00471C38 /* Tasks.swift */,
 				87B14EA122E9E12A00471C38 /* Main.storyboard */,
-				87B14EA422E9E13600471C38 /* Assets.xcassets */,
+				871F76A822EB0D0800BC6B2E /* Recources */,
 				87B14EA622E9E13600471C38 /* LaunchScreen.storyboard */,
-				87B14EA922E9E13600471C38 /* Info.plist */,
 			);
 			path = Shedule;
 			sourceTree = "<group>";
@@ -261,7 +278,10 @@
 			files = (
 				87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */,
 				87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */,
+				87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */,
+				87BA493422EA2516001AE8C9 /* SheduleDetail.swift in Sources */,
 				87B14E9E22E9E12A00471C38 /* Shedule.swift in Sources */,
+				87BA493222EA1D77001AE8C9 /* SheduleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

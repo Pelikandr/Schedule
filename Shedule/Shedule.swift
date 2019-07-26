@@ -11,25 +11,56 @@ import UIKit
 
 class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var sheduleTable: UITableView!
+    @IBOutlet weak var tablewView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tablewView.rowHeight = 70
+        tablewView.delegate = self as UITableViewDelegate
+        tablewView.dataSource = self
+        DataSource.shared.testAppend()
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0 // your number of cells here
+    override func viewWillAppear(_ animated: Bool) {
+        tablewView.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // your cell coding
-        return UITableViewCell()
+    func tableView(_ sheduleTable: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return DataSource.shared.subjectList.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // cell selected code here
+    func tableView(_ sheduleTable: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ sheduleTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = sheduleTable.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SheduleCell
+        let subject: Subject = DataSource.shared.subjectList[indexPath.row]
+        cell.subjectNameLabel.text = subject.subjectName
+        cell.classroomTypeLabel.text = subject.classroom + ", " + subject.type
+        cell.startTimeLabel.text = timeString(subject.startTime)
+        cell.endTimeLabel.text = timeString(subject.endTime)
+        cell.proffesorNameLabel.text = subject.proffesorName
+        cell.separatorView.backgroundColor = subject.separatorColor
+        return cell
+    }
+    
+    @IBAction func addButton(_ sender: Any) {
+        toSheduleDetail()
+    }
+    
+    func toSheduleDetail() {
+        self.performSegue(withIdentifier: "toSheduleDetail", sender: nil)
     }
 
+    private lazy var dateFormatter = DateFormatter()
+    private func dayString(_ date: Date) -> String {
+        dateFormatter.dateFormat = "dd.MM"
+        return dateFormatter.string(from: date)
+    }
+    private func timeString(_ date: Date) -> String {
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
+    }
 }
 

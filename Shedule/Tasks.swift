@@ -9,24 +9,50 @@
 import UIKit
 
 class Tasks: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tasksTable: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.rowHeight = 70
+        tableView.delegate = self as UITableViewDelegate
+        tableView.dataSource = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 { return "In progress" }
+        if section == 1 { return "Done" }
+        else { return " " }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0 // your number of cells here
+        return DataSource.shared.taskList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // your cell coding
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TasksCell
+        let task = DataSource.shared.taskList[indexPath.row]
+        cell.detailLabel.text = task.detail
+        cell.subjectLabel.text = task.subject
+        cell.finishTimeLabel.text = dateString(task.finishTime)
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // cell selected code here
+    }
+    
+    lazy var dateFormatter = DateFormatter()
+    private func dateString(_ date: Date) -> String {
+        dateFormatter.dateFormat = "E, dd.MM"
+        return dateFormatter.string(from: date)
     }
 
 

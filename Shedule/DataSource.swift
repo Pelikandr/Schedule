@@ -9,18 +9,9 @@
 import Foundation
 import UIKit
 
-enum weekDays {
-    case monday
-    case tuesday
-//    case wednesday
-//    case thursday
-//    case friday
-//    case sunday
-}
-
 struct Section {
-    let weekDayName: String
-    var subjectList: [Subject]
+    let name: String
+    var list: [Subject]
 }
 
 struct Subject {
@@ -37,29 +28,44 @@ struct Subject {
     let separatorColor: UIColor
 }
 
+struct Task {
+    let detail: String
+    let subject: String
+    let finishTime: Date
+    let remind: Date
+    let done: Bool
+    let note: String
+}
+
 class DataSource {
     
     static var shared = DataSource()
+    
+    var taskList: [Task] = []
 
     var subjectList: [Subject] = []
-    lazy var  monday = Section(weekDayName: "Monday", subjectList: subjectList)
-    lazy var tuesday = Section(weekDayName: "Tuesday", subjectList: subjectList)
-    lazy var wednesday = Section(weekDayName: "Wednesday", subjectList: subjectList)
-    lazy var thursday = Section(weekDayName: "Thursday", subjectList: subjectList)
-    lazy var friday = Section(weekDayName: "Friday", subjectList: subjectList)
-    lazy var sunday = Section(weekDayName: "Sunday", subjectList: subjectList)
-    lazy var sectionList: [Section] = [monday, tuesday, wednesday, thursday, friday, sunday]
+    lazy var  monday = Section(name: "Monday", list: subjectList)
+    lazy var tuesday = Section(name: "Tuesday", list: subjectList)
+    lazy var wednesday = Section(name: "Wednesday", list: subjectList)
+    lazy var thursday = Section(name: "Thursday", list: subjectList)
+    lazy var friday = Section(name: "Friday", list: subjectList)
+    lazy var sunday = Section(name: "Sunday", list: subjectList)
+    lazy var sheduleSectionList: [Section] = [monday, tuesday, wednesday, thursday, friday, sunday]
     
     var sectionHeaderList = [0: "Monday", 1: "Tuesday", 2: "Wednesday", 3: "Thursday", 4: "Friday", 5: "Sunday"]
     
-    func append(subject: Subject) {
+    func appendTask(task: Task) {
+        taskList.append(task)
+    }
+    
+    func appendSubject(subject: Subject) {
         subjectList.append(subject)
-        sectionList[subject.weekDay].subjectList.append(subject)
+        sheduleSectionList[subject.weekDay].list.append(subject)
     }
 
     func testAppend() {
         let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", type: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: 0, separatorColor: UIColor.lightGray)
-        append(subject: testSubject)
+        appendSubject(subject: testSubject)
     }
 }
 

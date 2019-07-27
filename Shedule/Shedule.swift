@@ -15,11 +15,9 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tablewView.rowHeight = 70
         tablewView.delegate = self as UITableViewDelegate
         tablewView.dataSource = self
-        //DataSource.shared.testAppend()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,25 +25,25 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return DataSource.shared.sectionList.count
+        return DataSource.shared.sheduleSectionList.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return DataSource.shared.sectionList[section].weekDayName
+        return DataSource.shared.sheduleSectionList[section].name
     }
     
     
-    func tableView(_ sheduleTable: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataSource.shared.sectionList[section].subjectList.count
+    func tableView(_ tablewView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return DataSource.shared.sheduleSectionList[section].list.count
     }
     
-    func tableView(_ sheduleTable: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tablewView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
-    func tableView(_ sheduleTable: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = sheduleTable.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SheduleCell
-        let subject: Subject = DataSource.shared.sectionList[indexPath.section].subjectList[indexPath.row]
+    func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tablewView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SheduleCell
+        let subject: Subject = DataSource.shared.sheduleSectionList[indexPath.section].list[indexPath.row]
         cell.subjectNameLabel.text = subject.subjectName
         cell.classroomTypeLabel.text = subject.classroom + ", " + subject.type
         cell.startTimeLabel.text = timeString(subject.startTime)
@@ -55,8 +53,6 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
-    
     @IBAction func addButton(_ sender: Any) {
         toSheduleDetail()
     }
@@ -65,7 +61,7 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.performSegue(withIdentifier: "toSheduleDetail", sender: nil)
     }
 
-    private lazy var dateFormatter = DateFormatter()
+    lazy var dateFormatter = DateFormatter()
     private func dayString(_ date: Date) -> String {
         dateFormatter.dateFormat = "dd.MM"
         return dateFormatter.string(from: date)

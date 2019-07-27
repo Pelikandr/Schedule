@@ -1,0 +1,29 @@
+//
+//  TasksDetail.swift
+//  Shedule
+//
+//  Created by Denis Zayakin on 7/27/19.
+//  Copyright © 2019 Denis Zayakin. All rights reserved.
+//
+
+import UIKit
+
+class TasksDetail: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func inProgress(_ sender: Any) {
+        let task = Task(detail: "lab2", subject: "English", finishTime: Date(), remind: Date(), done: true, note: "kkk kkk kkk")
+        DataSource.shared.appendTask(task: task)
+    }
+    
+    @IBAction func done(_ sender: Any) {
+        let task = Task(detail: "lab2", subject: "English", finishTime: Date(), remind: Date(), done: false, note: "kkk kkk kkk")
+        DataSource.shared.appendTask(task: task)
+    }
+
+}

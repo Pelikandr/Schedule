@@ -10,42 +10,27 @@ import UIKit
 
 class SheduleDetail: UIViewController {
     
-//    var day: weekDays?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func saveButton(_ sender: Any) {
-//        switch day {
-//        case .some(.monday):
-//            <#code#>
-//        case .some(.tuesday):
-//            <#code#>
-//
-//            <#code#>
-//        case .none:
-//            <#code#>
-//        }
         let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", type: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: 0, separatorColor: UIColor.green)
-        DataSource.shared.append(subject: testSubject)
+        DataSource.shared.appendSubject(subject: testSubject)
     }
     
     @IBAction func tue(_ sender: Any) {
         let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", type: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: 1, separatorColor: UIColor.red)
-        DataSource.shared.append(subject: testSubject)
+        DataSource.shared.appendSubject(subject: testSubject)
     }
     
     @IBAction func wed(_ sender: Any) {
         let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", type: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: 2, separatorColor: UIColor.lightGray)
-        DataSource.shared.append(subject: testSubject)
+        DataSource.shared.appendSubject(subject: testSubject)
     }
     
     @IBAction func thu(_ sender: Any) {
         let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", type: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: 3, separatorColor: UIColor.blue)
-        DataSource.shared.append(subject: testSubject)
+        DataSource.shared.appendSubject(subject: testSubject)
     }
-    
-    
-    
 }

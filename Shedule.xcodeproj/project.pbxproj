@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87A05D3922EC49E9004EB69A /* TasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A05D3822EC49E9004EB69A /* TasksCell.swift */; };
+		87A05D3B22EC5445004EB69A /* TasksDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A05D3A22EC5445004EB69A /* TasksDetail.swift */; };
 		87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9B22E9E12A00471C38 /* AppDelegate.swift */; };
 		87B14E9E22E9E12A00471C38 /* Shedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9D22E9E12A00471C38 /* Shedule.swift */; };
 		87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9F22E9E12A00471C38 /* Tasks.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		87A05D3822EC49E9004EB69A /* TasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCell.swift; sourceTree = "<group>"; };
+		87A05D3A22EC5445004EB69A /* TasksDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksDetail.swift; sourceTree = "<group>"; };
 		87B14E9822E9E12A00471C38 /* Shedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B14E9B22E9E12A00471C38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87B14E9D22E9E12A00471C38 /* Shedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shedule.swift; sourceTree = "<group>"; };
@@ -120,6 +124,8 @@
 				87BA493122EA1D77001AE8C9 /* SheduleCell.swift */,
 				87BA493322EA2516001AE8C9 /* SheduleDetail.swift */,
 				87B14E9F22E9E12A00471C38 /* Tasks.swift */,
+				87A05D3822EC49E9004EB69A /* TasksCell.swift */,
+				87A05D3A22EC5445004EB69A /* TasksDetail.swift */,
 				87B14EA122E9E12A00471C38 /* Main.storyboard */,
 				871F76A822EB0D0800BC6B2E /* Recources */,
 				87B14EA622E9E13600471C38 /* LaunchScreen.storyboard */,
@@ -277,9 +283,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */,
+				87A05D3922EC49E9004EB69A /* TasksCell.swift in Sources */,
 				87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */,
 				87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */,
 				87BA493422EA2516001AE8C9 /* SheduleDetail.swift in Sources */,
+				87A05D3B22EC5445004EB69A /* TasksDetail.swift in Sources */,
 				87B14E9E22E9E12A00471C38 /* Shedule.swift in Sources */,
 				87BA493222EA1D77001AE8C9 /* SheduleCell.swift in Sources */,
 			);

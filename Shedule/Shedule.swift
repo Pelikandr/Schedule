@@ -29,7 +29,11 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return DataSource.shared.sheduleSectionList[section].name
+        if DataSource.shared.sheduleSectionList[section].list.isEmpty == false {
+            return DataSource.shared.sheduleSectionList[section].name
+        } else {
+            return nil
+        }
     }
     
     

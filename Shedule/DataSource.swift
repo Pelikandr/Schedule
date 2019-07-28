@@ -41,9 +41,9 @@ class DataSource {
     
     static var shared = DataSource()
     
-    var taskList: [Task] = []
+    var taskList = [Task]()
 
-    var subjectList: [Subject] = []
+    var subjectList = [Subject]()
     lazy var  monday = Section(name: "Monday", list: subjectList)
     lazy var tuesday = Section(name: "Tuesday", list: subjectList)
     lazy var wednesday = Section(name: "Wednesday", list: subjectList)

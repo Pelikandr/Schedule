@@ -20,6 +20,7 @@ class SheduleCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.separatorView.layer.cornerRadius = 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

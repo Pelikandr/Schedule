@@ -21,10 +21,10 @@ struct Subject {
     let endTime: Date
     let remindTime: Date
     let proffesorName: String
-    let type: String
+    let classType: String
     let note: String
     let weekNumber: Int
-    let weekDay: Int
+    let dayNumber: Int // mon = 0, tue = 1 ...
     let separatorColor: UIColor
 }
 
@@ -32,7 +32,7 @@ struct Task {
     let detail: String
     let subject: String
     let finishTime: Date
-    let remind: Date
+    let remindTime: Date
     let done: Bool
     let note: String
 }
@@ -60,11 +60,11 @@ class DataSource {
     
     func appendSubject(subject: Subject) {
         subjectList.append(subject)
-        sheduleSectionList[subject.weekDay].list.append(subject)
+        sheduleSectionList[subject.dayNumber].list.append(subject)
     }
 
     func testAppend() {
-        let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", type: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: 0, separatorColor: UIColor.lightGray)
+        let testSubject = Subject(subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, dayNumber: 0, separatorColor: UIColor.lightGray)
         appendSubject(subject: testSubject)
     }
 }

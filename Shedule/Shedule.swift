@@ -28,17 +28,21 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return DataSource.shared.sheduleSectionList.count
     }
     
+    func tableView(_ tablewView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return DataSource.shared.sheduleSectionList[section].list.count
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if DataSource.shared.sheduleSectionList[section].list.isEmpty == false {
-            return DataSource.shared.sheduleSectionList[section].name
-        } else {
+        if DataSource.shared.sheduleSectionList[section].list.isEmpty {
             return nil
+        } else {
+            return DataSource.shared.sheduleSectionList[section].name + ", " + dayString(Date())
         }
     }
     
-    
-    func tableView(_ tablewView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataSource.shared.sheduleSectionList[section].list.count
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.text = header.textLabel?.text?.capitalized
     }
     
     func tableView(_ tablewView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -67,16 +71,12 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     lazy var dateFormatter = DateFormatter()
     private func dayString(_ date: Date) -> String {
-        dateFormatter.dateFormat = "dd.MM"
+        dateFormatter.dateFormat = "dd MMMM"
         return dateFormatter.string(from: date)
     }
     private func timeString(_ date: Date) -> String {
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date)
-    }
-    
-    func check(arr: [Subject]) {
-        
     }
 }
 

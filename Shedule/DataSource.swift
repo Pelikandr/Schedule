@@ -49,10 +49,12 @@ class DataSource {
     lazy var wednesday = Section(name: "Wednesday", list: subjectList)
     lazy var thursday = Section(name: "Thursday", list: subjectList)
     lazy var friday = Section(name: "Friday", list: subjectList)
+    lazy var saturday = Section(name: "Saturday", list: subjectList)
     lazy var sunday = Section(name: "Sunday", list: subjectList)
+    
     lazy var sheduleSectionList: [Section] = [monday, tuesday, wednesday, thursday, friday, sunday]
     
-    var sectionHeaderList = [0: "Monday", 1: "Tuesday", 2: "Wednesday", 3: "Thursday", 4: "Friday", 5: "Sunday"]
+    var sectionHeaderList = [0: "Monday", 1: "Tuesday", 2: "Wednesday", 3: "Thursday", 4: "Friday", 5: "Saturday", 6: "Sunday"]
     
     func appendTask(task: Task) {
         taskList.append(task)

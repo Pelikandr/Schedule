@@ -13,6 +13,8 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tablewView: UITableView!
     
+    var sectionList = [Section]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tablewView.rowHeight = 70
@@ -21,7 +23,21 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        reloadView()
         tablewView.reloadData()
+    }
+    
+    func reloadView() {
+        
+        DataSource.shared.getSubjectList{ [weak self] (subjectList, error) in
+            if let error = error {
+                print(error)
+            } else {
+                //DataSource.shared.sheduleSectionList[(subject?.weekNumber)!].list.append(subjectList!)
+                DataSource.shared.subjectList = subjectList!
+                self!.tablewView.reloadData()
+            }
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,6 +75,29 @@ class Shedule: UIViewController, UITableViewDelegate, UITableViewDataSource {
         cell.proffesorNameLabel.text = subject.proffesorName
         cell.separatorView.backgroundColor = subject.separatorColor
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Change") { [weak self] (action, indexPath) -> Void in
+            let subject: Subject? = DataSource.shared.sheduleSectionList[indexPath.section].list[indexPath.row]
+            //seague
+        }
+        editAction.backgroundColor = UIColor.orange
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { [weak self] (action, indexPath) -> Void in
+            if let subject = DataSource.shared.sheduleSectionList[indexPath.section].list[indexPath.row] as? Subject {
+                DataSource.shared.removeSubject(subject: subject) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    } else {
+                        // TODO: сделать массив хранения предметов в классе Shedule
+                        DataSource.shared.subjectList.remove(at: indexPath.row)
+                        self!.tablewView.deleteRows(at: [indexPath], with: .fade)
+                        
+                        }
+                    }
+                }
+            }
+        return [deleteAction, editAction]
     }
     
     @IBAction func addButton(_ sender: Any) {

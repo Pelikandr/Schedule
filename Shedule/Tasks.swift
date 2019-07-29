@@ -34,13 +34,13 @@ class Tasks: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataSource.shared.taskList.count
+        return DataSource.shared.tasksList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TasksCell
-        let task = DataSource.shared.taskList[indexPath.row]
-        cell.detailLabel.text = task.detail
+        let task = DataSource.shared.tasksList[indexPath.row]
+        cell.detailLabel.text = task.details
         cell.subjectLabel.text = task.subject
         cell.finishTimeLabel.text = dateString(task.finishTime)
         return cell

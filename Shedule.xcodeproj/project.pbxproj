@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		664AFB3C22EF6C720004E4AE /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664AFB3B22EF6C720004E4AE /* ScheduleViewController.swift */; };
+		66841DF122EF5DC400E01059 /* SchedulesAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66841DF022EF5DC400E01059 /* SchedulesAdapter.swift */; };
+		66841DF322EF650700E01059 /* SheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66841DF222EF650700E01059 /* SheduleCell.swift */; };
 		871F897D22EF0A7300BE735F /* SheduleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 871F897B22EF0A7300BE735F /* SheduleModel.xcdatamodeld */; };
 		87A05D3922EC49E9004EB69A /* TasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A05D3822EC49E9004EB69A /* TasksCell.swift */; };
 		87A05D3B22EC5445004EB69A /* TasksDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A05D3A22EC5445004EB69A /* TasksDetail.swift */; };
 		87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9B22E9E12A00471C38 /* AppDelegate.swift */; };
-		87B14E9E22E9E12A00471C38 /* Shedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9D22E9E12A00471C38 /* Shedule.swift */; };
 		87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9F22E9E12A00471C38 /* Tasks.swift */; };
 		87B14EA322E9E12A00471C38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B14EA122E9E12A00471C38 /* Main.storyboard */; };
 		87B14EA522E9E13600471C38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87B14EA422E9E13600471C38 /* Assets.xcassets */; };
@@ -19,7 +21,6 @@
 		87B14EB322E9E13700471C38 /* SheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14EB222E9E13700471C38 /* SheduleTests.swift */; };
 		87B14EBE22E9E13700471C38 /* SheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14EBD22E9E13700471C38 /* SheduleUITests.swift */; };
 		87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA492F22EA1A67001AE8C9 /* DataSource.swift */; };
-		87BA493222EA1D77001AE8C9 /* SheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA493122EA1D77001AE8C9 /* SheduleCell.swift */; };
 		87BA493422EA2516001AE8C9 /* SheduleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA493322EA2516001AE8C9 /* SheduleDetail.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,12 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		664AFB3B22EF6C720004E4AE /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		66841DF022EF5DC400E01059 /* SchedulesAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesAdapter.swift; sourceTree = "<group>"; };
+		66841DF222EF650700E01059 /* SheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleCell.swift; sourceTree = "<group>"; };
 		871F897C22EF0A7300BE735F /* SheduleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SheduleModel.xcdatamodel; sourceTree = "<group>"; };
 		87A05D3822EC49E9004EB69A /* TasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCell.swift; sourceTree = "<group>"; };
 		87A05D3A22EC5445004EB69A /* TasksDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksDetail.swift; sourceTree = "<group>"; };
 		87B14E9822E9E12A00471C38 /* Shedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B14E9B22E9E12A00471C38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		87B14E9D22E9E12A00471C38 /* Shedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shedule.swift; sourceTree = "<group>"; };
 		87B14E9F22E9E12A00471C38 /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		87B14EA222E9E12A00471C38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87B14EA422E9E13600471C38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,7 +62,6 @@
 		87B14EBD22E9E13700471C38 /* SheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleUITests.swift; sourceTree = "<group>"; };
 		87B14EBF22E9E13700471C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87BA492F22EA1A67001AE8C9 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		87BA493122EA1D77001AE8C9 /* SheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleCell.swift; sourceTree = "<group>"; };
 		87BA493322EA2516001AE8C9 /* SheduleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66841DEE22EF5DA800E01059 /* SchedulesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				664AFB3B22EF6C720004E4AE /* ScheduleViewController.swift */,
+				66841DF022EF5DC400E01059 /* SchedulesAdapter.swift */,
+				66841DF222EF650700E01059 /* SheduleCell.swift */,
+			);
+			name = SchedulesViewController;
+			path = ../../../../../System/Volumes/Data/Users/miserya/Projects/Shedule/Shedule/SchedulesViewController;
+			sourceTree = "<group>";
+		};
 		871F76A822EB0D0800BC6B2E /* Recources */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,8 +136,7 @@
 			children = (
 				87B14E9B22E9E12A00471C38 /* AppDelegate.swift */,
 				87BA492F22EA1A67001AE8C9 /* DataSource.swift */,
-				87B14E9D22E9E12A00471C38 /* Shedule.swift */,
-				87BA493122EA1D77001AE8C9 /* SheduleCell.swift */,
+				66841DEE22EF5DA800E01059 /* SchedulesViewController */,
 				87BA493322EA2516001AE8C9 /* SheduleDetail.swift */,
 				87B14E9F22E9E12A00471C38 /* Tasks.swift */,
 				87A05D3822EC49E9004EB69A /* TasksCell.swift */,
@@ -287,13 +299,14 @@
 			files = (
 				87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */,
 				87A05D3922EC49E9004EB69A /* TasksCell.swift in Sources */,
+				66841DF122EF5DC400E01059 /* SchedulesAdapter.swift in Sources */,
 				87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */,
 				87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */,
+				664AFB3C22EF6C720004E4AE /* ScheduleViewController.swift in Sources */,
 				87BA493422EA2516001AE8C9 /* SheduleDetail.swift in Sources */,
+				66841DF322EF650700E01059 /* SheduleCell.swift in Sources */,
 				87A05D3B22EC5445004EB69A /* TasksDetail.swift in Sources */,
 				871F897D22EF0A7300BE735F /* SheduleModel.xcdatamodeld in Sources */,
-				87B14E9E22E9E12A00471C38 /* Shedule.swift in Sources */,
-				87BA493222EA1D77001AE8C9 /* SheduleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

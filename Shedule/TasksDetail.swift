@@ -17,12 +17,12 @@ class TasksDetail: UIViewController {
     }
     
     @IBAction func inProgress(_ sender: Any) {
-        let task = Task(detail: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), done: true, note: "kkk kkk kkk")
+        let task = Task(details: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), isDone: true, note: "kkk kkk kkk")
         DataSource.shared.appendTask(task: task)
     }
     
     @IBAction func done(_ sender: Any) {
-        let task = Task(detail: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), done: false, note: "kkk kkk kkk")
+        let task = Task(details: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), isDone: false, note: "kkk kkk kkk")
         DataSource.shared.appendTask(task: task)
     }
 

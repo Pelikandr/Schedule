@@ -17,16 +17,11 @@ class SheduleCell: UITableViewCell {
     @IBOutlet weak var proffesorNameLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.separatorView.layer.cornerRadius = 2
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         subjectNameLabel.text = nil

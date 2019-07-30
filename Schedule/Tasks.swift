@@ -16,7 +16,6 @@ class Tasks: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.rowHeight = 70
         tableView.delegate = self as UITableViewDelegate
         tableView.dataSource = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SchedulesDetailTableViewController: UITableViewController {
+class SchedulesDetailTableViewController: UITableViewController, UITextViewDelegate {
 
 
     @IBOutlet weak var subjectNameTextField: UITextField!
@@ -18,10 +18,16 @@ class SchedulesDetailTableViewController: UITableViewController {
     @IBOutlet weak var proffesorNameTextField: UITextField!
     
     @IBOutlet weak var noteTextView: UITextView!
-
+    @IBOutlet weak var notePlaceholderLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        }
+        noteTextView.delegate = self
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.count > 0  { notePlaceholderLabel.text = "" }
+    }
     
     @IBAction func saveButton(_ sender: Any) {
         let testSubject = DataSource.shared.getSubject(for: .monday, color: .red)
@@ -32,6 +38,4 @@ class SchedulesDetailTableViewController: UITableViewController {
             self?.navigationController?.popViewController(animated: true)
         }
     }
-
-
 }

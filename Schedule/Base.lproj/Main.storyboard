@@ -242,9 +242,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbc-5t-Xoq">
-                                                    <rect key="frame" x="16" y="11" width="37" height="18"/>
+                                                    <rect key="frame" x="16" y="11" width="35" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -403,6 +403,13 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxP-L9-XnM">
+                                                    <rect key="frame" x="20" y="19" width="32" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6705882352941176" alpha="0.6814265839041096" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -417,6 +424,7 @@
                     <connections>
                         <outlet property="classTypeTextField" destination="5sg-GP-gNY" id="NSq-hB-Vhq"/>
                         <outlet property="classroomTextField" destination="2KA-a5-mMU" id="Fee-ad-cAd"/>
+                        <outlet property="notePlaceholderLabel" destination="vxP-L9-XnM" id="kS2-0h-Q2L"/>
                         <outlet property="noteTextView" destination="49O-Y3-x1P" id="GhZ-Il-8Pf"/>
                         <outlet property="proffesorNameTextField" destination="4Xg-LA-1HA" id="TQa-ib-iFi"/>
                         <outlet property="subjectNameTextField" destination="yUH-lk-ou5" id="ksM-Vc-3kV"/>

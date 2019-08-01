@@ -17,9 +17,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var notePlaceholderLabel: UILabel!
-    
-    var separatorColor = UIColor()
-    
+
     private lazy var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -34,7 +32,8 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     
     @IBAction func saveButton(_ sender: Any) {
         // TODO: selection of start and end time, weekNumber, weekday, separatorColor
-        let testSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: 1, weekDay: .monday, separatorColor: UIColor.red )
+        //let separatorColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
+        let testSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: 1, weekDay: .monday, separatorColor: DataSource.shared.separatorColor )
         DataSource.shared.appendSubject(subject: testSubject) { [weak self] (error: Error?) in
             if let error = error {
                 print("ERROR: \(error.localizedDescription)")

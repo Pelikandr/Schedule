@@ -25,10 +25,9 @@ class ColorChoiceCell: UITableViewCell {
     let schedulesDetailTableViewController = SchedulesDetailTableViewController()
     
     @objc func chooseColor(_ sender: UITapGestureRecognizer){
-        var separatorColor: UIColor = (sender.view?.backgroundColor)!
         let borderWidth = CGFloat(integerLiteral: 4)
         choiceView.frame.origin.x = (sender.view?.frame.origin.x)! - borderWidth
         choiceView.frame.origin.y = (sender.view?.frame.origin.y)! - borderWidth
-        schedulesDetailTableViewController.separatorColor = separatorColor
+        DataSource.shared.separatorColor = (sender.view?.backgroundColor)!
     }
 }

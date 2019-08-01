@@ -74,6 +74,7 @@ class DataSource {
     
     var tasksList = [Task]()
     
+    var separatorColor = UIColor()
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ScheduleModel")
@@ -204,6 +205,4 @@ class DataSource {
     func getSubject(for weekDay: WeekDay, color: UIColor) -> Subject {
         return Subject(id: UUID().uuidString, subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: weekDay, separatorColor: color)
     }
-
-    
 }

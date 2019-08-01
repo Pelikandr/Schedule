@@ -57,5 +57,6 @@ class ScheduleViewController: UIViewController {
     @IBAction func onAdd(_ sender: Any) {
         self.performSegue(withIdentifier: "toSheduleDetail", sender: nil)
     }
+    
 }
 

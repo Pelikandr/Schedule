@@ -10,6 +10,8 @@ import UIKit
 
 class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
+    private lazy var dateFormatter = DateFormatter()
+    
     var sections = [Section]()
 
     var onDelete: ((Subject, IndexPath) -> Void)?
@@ -46,8 +48,8 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         let cell = tablewView.dequeueReusableCell(withIdentifier: "SheduleCell", for: indexPath) as! SheduleCell
         cell.subjectNameLabel.text = subject.subjectName
         cell.classroomTypeLabel.text = subject.classroom + ", " + subject.classType
-        cell.startTimeLabel.text = subject.startTime
-        cell.endTimeLabel.text = subject.endTime
+        cell.startTimeLabel.text = timeString(subject.startTime)
+        cell.endTimeLabel.text = timeString(subject.endTime)
         cell.proffesorNameLabel.text = subject.proffesorName
         cell.separatorView.backgroundColor = subject.separatorColor
         return cell
@@ -66,5 +68,21 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
             self.onDelete?(self.sections[indexPath.section].list[indexPath.row], indexPath)
         }
         return [deleteAction, editAction]
+    }
+    
+    //MARK: - Private
+    
+    private func date(from string: String) -> Date {
+        dateFormatter.dateFormat = "dd MMMM, HH:mm"
+        return dateFormatter.date(from: string)!
+    }
+    
+    private func dayString(_ date: Date) -> String {
+        dateFormatter.dateFormat = "dd MMMM"
+        return dateFormatter.string(from: date)
+    }
+    private func timeString(_ date: Date) -> String {
+        dateFormatter.dateFormat = "HH:mm"
+        return dateFormatter.string(from: date)
     }
 }

@@ -22,11 +22,13 @@ class ColorChoiceCell: UITableViewCell {
             choiceView.layer.cornerRadius = choiceView.frame.width / 2.0
         }
     }
+    let schedulesDetailTableViewController = SchedulesDetailTableViewController()
     
     @objc func chooseColor(_ sender: UITapGestureRecognizer){
-        //let color: UIColor = (sender.view?.backgroundColor)!
+        var separatorColor: UIColor = (sender.view?.backgroundColor)!
         let borderWidth = CGFloat(integerLiteral: 4)
         choiceView.frame.origin.x = (sender.view?.frame.origin.x)! - borderWidth
         choiceView.frame.origin.y = (sender.view?.frame.origin.y)! - borderWidth
+        schedulesDetailTableViewController.separatorColor = separatorColor
     }
 }

@@ -13,7 +13,7 @@
         <!--Schedule View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="ScheduleViewController" customModule="Schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="ScheduleViewController" customModule="Shedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SheduleCell" rowHeight="76" id="9wu-Ax-L4I" customClass="SheduleCell" customModule="Schedule" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SheduleCell" rowHeight="76" id="9wu-Ax-L4I" customClass="SheduleCell" customModule="Shedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9wu-Ax-L4I" id="ug7-RT-KzO">
@@ -37,7 +37,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMDS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6m-wP-zpO">
-                                                    <rect key="frame" x="74" y="16.5" width="396" height="20.5"/>
+                                                    <rect key="frame" x="74" y="16.5" width="171" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -63,13 +63,13 @@
                                                     </constraints>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13.175, Lecture" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyA-GC-ouY">
-                                                    <rect key="frame" x="74" y="42" width="396" height="16"/>
+                                                    <rect key="frame" x="74" y="42" width="171" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poluhin A. V." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEx-TY-Isr">
-                                                    <rect key="frame" x="480" y="18" width="110" height="16"/>
+                                                    <rect key="frame" x="255" y="18" width="110" height="16"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="110" id="ahy-MA-lvk"/>
                                                     </constraints>
@@ -134,7 +134,7 @@
         <!--Schedules Detail Table View Controller-->
         <scene sceneID="SGS-xC-9wW">
             <objects>
-                <tableViewController id="6W9-m6-Zkc" customClass="SchedulesDetailTableViewController" customModule="Schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="6W9-m6-Zkc" customClass="SchedulesDetailTableViewController" customModule="Shedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tqD-pD-c5e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +234,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="colorCell" rowHeight="115" id="zq0-GR-0gc" customClass="ColorChoiceCell" customModule="Schedule" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="colorCell" rowHeight="115" id="zq0-GR-0gc" customClass="ColorChoiceCell" customModule="Shedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="348" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zq0-GR-0gc" id="M7Z-0X-IWH">
@@ -370,23 +370,23 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="choiceView" destination="6GA-ji-rRd" id="8um-7b-3lg"/>
-                                            <outletCollection property="colorViews" destination="fIJ-ma-QVc" collectionClass="NSMutableArray" id="CRO-bk-UkJ"/>
-                                            <outletCollection property="colorViews" destination="p5H-Sk-6m9" collectionClass="NSMutableArray" id="P4B-bQ-cEI"/>
-                                            <outletCollection property="colorViews" destination="wBh-J8-K8G" collectionClass="NSMutableArray" id="vxo-Mj-L1L"/>
-                                            <outletCollection property="colorViews" destination="Ges-Ly-sZq" collectionClass="NSMutableArray" id="aB5-aT-bqZ"/>
-                                            <outletCollection property="colorViews" destination="b2k-Fp-9Pu" collectionClass="NSMutableArray" id="oQT-Fn-Dbx"/>
-                                            <outletCollection property="colorViews" destination="Xs6-rg-bie" collectionClass="NSMutableArray" id="poS-Xf-6Vm"/>
-                                            <outletCollection property="colorViews" destination="7no-Bd-SP0" collectionClass="NSMutableArray" id="tSO-dJ-yDK"/>
-                                            <outletCollection property="colorViews" destination="wzL-vC-7i3" collectionClass="NSMutableArray" id="QLx-gN-i2u"/>
-                                            <outletCollection property="colorViews" destination="VTI-cv-kL3" collectionClass="NSMutableArray" id="0Ec-n0-Kjc"/>
-                                            <outletCollection property="colorViews" destination="Qlf-CP-ceq" collectionClass="NSMutableArray" id="Det-mE-SkV"/>
-                                            <outletCollection property="colorViews" destination="PCe-gK-HXx" collectionClass="NSMutableArray" id="hNz-cJ-wHU"/>
-                                            <outletCollection property="colorViews" destination="BPW-a2-x9j" collectionClass="NSMutableArray" id="rmY-uI-LbG"/>
-                                            <outletCollection property="colorViews" destination="XT3-tP-2xB" collectionClass="NSMutableArray" id="8zh-ee-tnE"/>
-                                            <outletCollection property="colorViews" destination="hlC-de-1gW" collectionClass="NSMutableArray" id="uCW-PA-Mev"/>
-                                            <outletCollection property="colorViews" destination="zdR-Or-1DZ" collectionClass="NSMutableArray" id="6Iz-hC-fHQ"/>
-                                            <outletCollection property="colorViews" destination="SSy-yq-IFe" collectionClass="NSMutableArray" id="7cF-u1-D9K"/>
+                                            <outlet property="choiceView" destination="6GA-ji-rRd" id="DlB-r7-LfF"/>
+                                            <outletCollection property="colorViews" destination="fIJ-ma-QVc" collectionClass="NSMutableArray" id="4c3-9N-hMU"/>
+                                            <outletCollection property="colorViews" destination="p5H-Sk-6m9" collectionClass="NSMutableArray" id="KLs-cp-vUa"/>
+                                            <outletCollection property="colorViews" destination="wBh-J8-K8G" collectionClass="NSMutableArray" id="nRw-kE-h0i"/>
+                                            <outletCollection property="colorViews" destination="Ges-Ly-sZq" collectionClass="NSMutableArray" id="1ty-HV-kEa"/>
+                                            <outletCollection property="colorViews" destination="b2k-Fp-9Pu" collectionClass="NSMutableArray" id="Rgl-J6-5oS"/>
+                                            <outletCollection property="colorViews" destination="Xs6-rg-bie" collectionClass="NSMutableArray" id="UeL-zr-mcC"/>
+                                            <outletCollection property="colorViews" destination="7no-Bd-SP0" collectionClass="NSMutableArray" id="7q0-B1-eMC"/>
+                                            <outletCollection property="colorViews" destination="wzL-vC-7i3" collectionClass="NSMutableArray" id="FPB-qh-CP1"/>
+                                            <outletCollection property="colorViews" destination="VTI-cv-kL3" collectionClass="NSMutableArray" id="1Kg-3q-p5A"/>
+                                            <outletCollection property="colorViews" destination="Qlf-CP-ceq" collectionClass="NSMutableArray" id="UhG-mm-X4q"/>
+                                            <outletCollection property="colorViews" destination="PCe-gK-HXx" collectionClass="NSMutableArray" id="MW2-Kv-hy7"/>
+                                            <outletCollection property="colorViews" destination="BPW-a2-x9j" collectionClass="NSMutableArray" id="OLM-Rq-dmz"/>
+                                            <outletCollection property="colorViews" destination="XT3-tP-2xB" collectionClass="NSMutableArray" id="k18-qZ-NT3"/>
+                                            <outletCollection property="colorViews" destination="hlC-de-1gW" collectionClass="NSMutableArray" id="ico-MW-MV0"/>
+                                            <outletCollection property="colorViews" destination="zdR-Or-1DZ" collectionClass="NSMutableArray" id="Dma-Ar-dyE"/>
+                                            <outletCollection property="colorViews" destination="SSy-yq-IFe" collectionClass="NSMutableArray" id="J6T-f0-eyU"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="100" id="RIW-ZG-sjK">
@@ -437,7 +437,7 @@
         <!--Tasks-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="Tasks" customModule="Schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="Tasks" customModule="Shedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,7 +447,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="uUx-un-QJ3" customClass="TasksCell" customModule="Schedule" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="uUx-un-QJ3" customClass="TasksCell" customModule="Shedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uUx-un-QJ3" id="8X0-AN-c6T">
@@ -507,7 +507,7 @@
         <!--Tasks Detail-->
         <scene sceneID="XaB-CM-54T">
             <objects>
-                <viewController id="wrx-aC-zN7" customClass="TasksDetail" customModule="Schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wrx-aC-zN7" customClass="TasksDetail" customModule="Shedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ieo-0c-dTc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

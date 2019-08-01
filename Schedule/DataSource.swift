@@ -48,8 +48,8 @@ struct Subject {
     let id: String
     let subjectName: String
     let classroom: String
-    let startTime: String
-    let endTime: String
+    let startTime: Date
+    let endTime: Date
     let remindTime: Date
     let proffesorName: String
     let classType: String
@@ -73,7 +73,7 @@ class DataSource {
     static var shared = DataSource()
     
     var tasksList = [Task]()
-    private lazy var dateFormatter = DateFormatter()
+    
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ScheduleModel")
@@ -205,24 +205,5 @@ class DataSource {
         return Subject(id: UUID().uuidString, subjectName: "ММДС", classroom: "6.302", startTime: prettyDate(Date()), endTime: prettyDate(Date()), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: weekDay, separatorColor: color)
     }
 
-    //MARK: - Private
-
-    private func prettyDate(_ date: Date) -> String {
-        dateFormatter.dateFormat = "dd MMMM, HH:mm"
-        return dateFormatter.string(from: date)
-    }
-
-    private func date(from string: String) -> Date {
-        dateFormatter.dateFormat = "dd MMMM, HH:mm"
-        return dateFormatter.date(from: string)!
-    }
-
-    private func dayString(_ date: Date) -> String {
-        dateFormatter.dateFormat = "dd MMMM"
-        return dateFormatter.string(from: date)
-    }
-    private func timeString(_ date: Date) -> String {
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter.string(from: date)
-    }
+    
 }

@@ -113,8 +113,8 @@ class DataSource {
                         return Subject(id: id,
                                        subjectName: subjectName,
                                        classroom: classroom,
-                                       startTime: self.timeString(startTime),
-                                       endTime: self.timeString(endTime),
+                                       startTime: startTime,
+                                       endTime: endTime,
                                        remindTime: remindTime,
                                        proffesorName: proffesorName,
                                        classType: classType,
@@ -154,8 +154,8 @@ class DataSource {
             baseSubject.id = subject.id
             baseSubject.subjectName = subject.subjectName
             baseSubject.classroom = subject.classroom
-            baseSubject.startTime = self.date(from: subject.startTime)
-            baseSubject.endTime = self.date(from: subject.endTime)
+            baseSubject.startTime = subject.startTime
+            baseSubject.endTime = subject.endTime
             baseSubject.remindTime = subject.remindTime
             baseSubject.proffesorName = subject.proffesorName
             baseSubject.classType = subject.classType
@@ -202,7 +202,7 @@ class DataSource {
     }
 
     func getSubject(for weekDay: WeekDay, color: UIColor) -> Subject {
-        return Subject(id: UUID().uuidString, subjectName: "ММДС", classroom: "6.302", startTime: prettyDate(Date()), endTime: prettyDate(Date()), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: weekDay, separatorColor: color)
+        return Subject(id: UUID().uuidString, subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: weekDay, separatorColor: color)
     }
 
     

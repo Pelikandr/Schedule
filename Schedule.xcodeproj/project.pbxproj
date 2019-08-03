@@ -15,7 +15,7 @@
 		87A05D3B22EC5445004EB69A /* TasksDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A05D3A22EC5445004EB69A /* TasksDetail.swift */; };
 		87A5A26922F2D79700FBBCB3 /* ColorChoiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A5A26822F2D79600FBBCB3 /* ColorChoiceCell.swift */; };
 		87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9B22E9E12A00471C38 /* AppDelegate.swift */; };
-		87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9F22E9E12A00471C38 /* Tasks.swift */; };
+		87B14EA022E9E12A00471C38 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14E9F22E9E12A00471C38 /* TasksViewController.swift */; };
 		87B14EA322E9E12A00471C38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B14EA122E9E12A00471C38 /* Main.storyboard */; };
 		87B14EA522E9E13600471C38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87B14EA422E9E13600471C38 /* Assets.xcassets */; };
 		87B14EA822E9E13600471C38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87B14EA622E9E13600471C38 /* LaunchScreen.storyboard */; };
@@ -23,6 +23,7 @@
 		87B14EBE22E9E13700471C38 /* SheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14EBD22E9E13700471C38 /* SheduleUITests.swift */; };
 		87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA492F22EA1A67001AE8C9 /* DataSource.swift */; };
 		87BA493422EA2516001AE8C9 /* SchedulesDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA493322EA2516001AE8C9 /* SchedulesDetailTableViewController.swift */; };
+		87FEEA7022F5303900612604 /* TasksAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FEEA6F22F5303900612604 /* TasksAdapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +53,7 @@
 		87A5A26822F2D79600FBBCB3 /* ColorChoiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorChoiceCell.swift; sourceTree = "<group>"; };
 		87B14E9822E9E12A00471C38 /* Shedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87B14E9B22E9E12A00471C38 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		87B14E9F22E9E12A00471C38 /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
+		87B14E9F22E9E12A00471C38 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		87B14EA222E9E12A00471C38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87B14EA422E9E13600471C38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87B14EA722E9E13600471C38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,6 +66,7 @@
 		87B14EBF22E9E13700471C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87BA492F22EA1A67001AE8C9 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		87BA493322EA2516001AE8C9 /* SchedulesDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesDetailTableViewController.swift; sourceTree = "<group>"; };
+		87FEEA6F22F5303900612604 /* TasksAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +150,7 @@
 				87BA492F22EA1A67001AE8C9 /* DataSource.swift */,
 				66841DEE22EF5DA800E01059 /* SchedulesViewController */,
 				87A5A26722F2D77000FBBCB3 /* SchedulesDetailTableViewController */,
-				87A05D3822EC49E9004EB69A /* TasksCell.swift */,
-				87B14E9F22E9E12A00471C38 /* Tasks.swift */,
+				87FEEA6E22F52FC500612604 /* TasksViewController */,
 				87A05D3A22EC5445004EB69A /* TasksDetail.swift */,
 				87B14EA122E9E12A00471C38 /* Main.storyboard */,
 				871F76A822EB0D0800BC6B2E /* Recources */,
@@ -174,6 +175,16 @@
 				87B14EBF22E9E13700471C38 /* Info.plist */,
 			);
 			path = SheduleUITests;
+			sourceTree = "<group>";
+		};
+		87FEEA6E22F52FC500612604 /* TasksViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87B14E9F22E9E12A00471C38 /* TasksViewController.swift */,
+				87FEEA6F22F5303900612604 /* TasksAdapter.swift */,
+				87A05D3822EC49E9004EB69A /* TasksCell.swift */,
+			);
+			path = TasksViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87B14EA022E9E12A00471C38 /* Tasks.swift in Sources */,
+				87B14EA022E9E12A00471C38 /* TasksViewController.swift in Sources */,
 				87A05D3922EC49E9004EB69A /* TasksCell.swift in Sources */,
 				66841DF122EF5DC400E01059 /* SchedulesAdapter.swift in Sources */,
 				87B14E9C22E9E12A00471C38 /* AppDelegate.swift in Sources */,
@@ -315,6 +326,7 @@
 				664AFB3C22EF6C720004E4AE /* ScheduleViewController.swift in Sources */,
 				87A5A26922F2D79700FBBCB3 /* ColorChoiceCell.swift in Sources */,
 				87BA493422EA2516001AE8C9 /* SchedulesDetailTableViewController.swift in Sources */,
+				87FEEA7022F5303900612604 /* TasksAdapter.swift in Sources */,
 				66841DF322EF650700E01059 /* SheduleCell.swift in Sources */,
 				87A05D3B22EC5445004EB69A /* TasksDetail.swift in Sources */,
 				871F897D22EF0A7300BE735F /* ScheduleModel.xcdatamodeld in Sources */,

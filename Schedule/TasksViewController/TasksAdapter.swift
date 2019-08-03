@@ -1,26 +1,14 @@
 //
-//  SecondViewController.swift
+//  TasksAdapter.swift
 //  Shedule
 //
-//  Created by Denis Zayakin on 7/25/19.
+//  Created by Denis Zayakin on 8/2/19.
 //  Copyright © 2019 Denis Zayakin. All rights reserved.
 //
 
 import UIKit
 
-class Tasks: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.rowHeight = 70
-        tableView.delegate = self as UITableViewDelegate
-        tableView.dataSource = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
+class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -53,8 +41,4 @@ class Tasks: UIViewController, UITableViewDelegate, UITableViewDataSource {
         dateFormatter.dateFormat = "E, dd.MM"
         return dateFormatter.string(from: date)
     }
-
-
 }
-
-

@@ -17,13 +17,23 @@ class TasksDetail: UIViewController {
     }
     
     @IBAction func inProgress(_ sender: Any) {
-        let task = Task(details: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), isDone: true, note: "kkk kkk kkk")
-        DataSource.shared.appendTask(task: task)
+        let task = Task(id: UUID().uuidString, details: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), isDone: false, note: "kkk kkk kkk")
+        DataSource.shared.appendTask(task: task) { [weak self] (error: Error?) in
+            if let error = error {
+                print("ERROR: \(error.localizedDescription)")
+            }
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func done(_ sender: Any) {
-        let task = Task(details: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), isDone: false, note: "kkk kkk kkk")
-        DataSource.shared.appendTask(task: task)
+        let task = Task(id: UUID().uuidString, details: "lab2", subject: "English", finishTime: Date(), remindTime: Date(), isDone: true, note: "kkk kkk kkk")
+        DataSource.shared.appendTask(task: task) { [weak self] (error: Error?) in
+            if let error = error {
+                print("ERROR: \(error.localizedDescription)")
+            }
+            self?.navigationController?.popViewController(animated: true)
+        }
     }
 
 }

@@ -10,30 +10,58 @@ import UIKit
 
 class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
+    var sections = [taskSection]()
+    
+    var onDelete: ((Task, IndexPath) -> Void)?
+    var onTaskSelected: ((Task) -> Void)?
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return sections.count
+    }
+    
+    func tableView(_ tablewView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].list.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == 0 { return "In progress" }
-        if section == 1 { return "Done" }
-        else { return " " }
+        if sections[section].list.isEmpty {
+            return nil
+        } else {
+            return sections[section].name
+        }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataSource.shared.tasksList.count
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.text = header.textLabel?.text?.capitalized
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onTaskSelected?(sections[indexPath.section].list[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let task: Task = sections[indexPath.section].list[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TasksCell
-        let task = DataSource.shared.tasksList[indexPath.row]
         cell.detailLabel.text = task.details
         cell.subjectLabel.text = task.subject
         cell.finishTimeLabel.text = dateString(task.finishTime)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Change") { [weak self] (action, indexPath) -> Void in
+            //TODO: seague
+            guard let self = self else { return }
+            let _: Task = self.sections[indexPath.section].list[indexPath.row]
+        }
+        editAction.backgroundColor = UIColor.orange
+        
+        let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { [weak self] (action, indexPath) -> Void in
+            guard let self = self else { return }
+            self.onDelete?(self.sections[indexPath.section].list[indexPath.row], indexPath)
+        }
+        return [deleteAction, editAction]
     }
     
     lazy var dateFormatter = DateFormatter()

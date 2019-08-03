@@ -44,6 +44,11 @@ struct Section {
     var list: [Subject]
 }
 
+struct taskSection {
+    let name: String
+    var list: [Task]
+}
+
 struct Subject {
     let id: String
     let subjectName: String
@@ -60,6 +65,7 @@ struct Subject {
 }
 
 struct Task {
+    let id: String
     let details: String
     let subject: String
     let finishTime: Date
@@ -86,9 +92,9 @@ class DataSource {
         return container
     }()
 
-    func appendTask(task: Task) {
-        tasksList.append(task)
-    }
+//    func appendTask(task: Task) {
+//        tasksList.append(task)
+//    }
     
     func getSubjectList(completion: @escaping (([Section]?, Error?) -> Void)) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -202,6 +208,105 @@ class DataSource {
         }
     }
 
+    func getTasksList(completion: @escaping (([taskSection]?, Error?) -> Void)) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let `self` = self else { return }
+            
+            do {
+                let tasks = try self.persistentContainer.viewContext
+                    .fetch(NSFetchRequest<BaseTask>(entityName: "BaseTask"))
+                    .sorted(by: { ($0.finishTime ?? Date()) < ($1.finishTime ?? Date()) })
+                    .compactMap({ (base: BaseTask) -> Task? in
+                        guard let id = base.id,
+                            let details = base.details,
+                            let subject = base.subject,
+                            let finishTime = base.finishTime,
+                            let remindTime = base.remindTime,
+                            let isDone = base.isDone as Bool?,
+                            let note = base.note else { return nil }
+                        
+                        return Task(id: id,
+                                    details: details,
+                                    subject: subject,
+                                    finishTime: finishTime,
+                                    remindTime: remindTime,
+                                    isDone: isDone,
+                                    note: note )
+                    })
+                var sections = [taskSection]()
+                if let isDone = false as Bool?{
+                    sections.append(taskSection(name: "In progress", list: tasks.filter({ $0.isDone == isDone })))
+                    }
+                if let isDone = true as Bool?{
+                    sections.append(taskSection(name: "Done", list: tasks.filter({ $0.isDone == isDone })))
+                }
+            
+                let filteredSections = sections.filter({ !$0.list.isEmpty })
+                
+                DispatchQueue.main.async {
+                    completion(filteredSections, nil)
+                }
+                
+            } catch {
+                DispatchQueue.main.async {
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+    
+    func appendTask(task: Task, completion: ((Error?) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let `self` = self else { return }
+            
+            let managedContext = self.persistentContainer.newBackgroundContext()
+            
+            let baseTask = BaseTask(context: managedContext)
+            baseTask.id = task.id
+            baseTask.details = task.details
+            baseTask.subject = task.subject
+            baseTask.finishTime = task.finishTime
+            baseTask.remindTime = task.remindTime
+            baseTask.isDone = task.isDone
+            baseTask.note = task.note
+            
+            do {
+                try managedContext.save()
+                DispatchQueue.main.async {
+                    completion?(nil)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion?(error)
+                }
+            }
+        }
+    }
+    
+    func removeTask(task: Task, completion: ((Error?) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let `self` = self else { return }
+            
+            let managedContext = self.persistentContainer.newBackgroundContext()
+            
+            let request = NSFetchRequest<BaseTask>(entityName: "BaseTask")
+            request.predicate = NSPredicate(format: "id == [c] %@", task.id)
+            do {
+                if let object = try managedContext.fetch(request).first {
+                    managedContext.delete(object)
+                    try managedContext.save()
+                    DispatchQueue.main.async {
+                        completion?(nil)
+                    }
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    completion?(error)
+                }
+            }
+        }
+    }
+    
     func getSubject(for weekDay: WeekDay, color: UIColor) -> Subject {
         return Subject(id: UUID().uuidString, subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: weekDay, separatorColor: color)
     }

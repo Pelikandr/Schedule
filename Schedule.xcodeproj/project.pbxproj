@@ -117,8 +117,8 @@
 		87A5A26722F2D77000FBBCB3 /* SchedulesDetailTableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				87A5A26822F2D79600FBBCB3 /* ColorChoiceCell.swift */,
 				87BA493322EA2516001AE8C9 /* SchedulesDetailTableViewController.swift */,
+				87A5A26822F2D79600FBBCB3 /* ColorChoiceCell.swift */,
 			);
 			path = SchedulesDetailTableViewController;
 			sourceTree = "<group>";

@@ -22,7 +22,7 @@ class ColorChoiceCell: UITableViewCell {
             choiceView.layer.cornerRadius = choiceView.frame.width / 2.0
         }
     }
-    let schedulesDetailTableViewController = SchedulesDetailTableViewController()
+//    let schedulesDetailTableViewController = SchedulesDetailTableViewController()
     
     @objc func chooseColor(_ sender: UITapGestureRecognizer){
         let borderWidth = CGFloat(integerLiteral: 4)

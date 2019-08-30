@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SchedulesDetailTableViewController: UITableViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class SchedulesDetailTableViewController: UITableViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
     @IBOutlet weak var subjectNameTextField: UITextField!
     @IBOutlet weak var classroomTextField: UITextField!
     
@@ -27,11 +27,19 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         noteTextView.delegate = self
+        
         self.weekDayPicker.delegate = self as UIPickerViewDelegate
         self.weekDayPicker.dataSource = self as UIPickerViewDataSource
+        
         weekDayPicker.selectRow(0, inComponent: 0, animated: true)
         weekDay = .monday
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.hideKeyboardOnSwipeDown))
+        swipeDown.delegate = self as! UIGestureRecognizerDelegate
+        swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
+        self.tableView.addGestureRecognizer(swipeDown)
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int{
@@ -74,5 +82,14 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: date)
     }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    @objc func hideKeyboardOnSwipeDown() {
+        view.endEditing(true)
+    }
+    
 }
 

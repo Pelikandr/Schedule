@@ -40,6 +40,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
             }
             self?.navigationController?.popViewController(animated: true)
         }
+        DataSource.shared.separatorColor = UIColor.darkGray
     }
     private func prettyDate(_ date: Date) -> String {
         dateFormatter.dateFormat = "dd MMMM, HH:mm"

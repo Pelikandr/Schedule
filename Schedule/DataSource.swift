@@ -80,7 +80,7 @@ class DataSource {
     
     var tasksList = [Task]()
     
-    var separatorColor = UIColor()
+    var separatorColor = UIColor.darkGray
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ScheduleModel")

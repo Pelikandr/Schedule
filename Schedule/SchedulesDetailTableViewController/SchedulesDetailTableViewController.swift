@@ -22,6 +22,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     @IBOutlet weak var weekDayPicker: UIPickerView!
     var pickerData: [WeekDay] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
     var weekDay: WeekDay?
+    var weekNumber: Int?
     private lazy var dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -65,7 +66,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     @IBAction func saveButton(_ sender: Any) {
         // TODO: selection of weekNumber
         //let separatorColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
-        let testSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800) , remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: 2, weekDay: weekDay!, separatorColor: DataSource.shared.separatorColor )
+        let testSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800) , remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!, weekDay: weekDay!, separatorColor: DataSource.shared.separatorColor )
         DataSource.shared.appendSubject(subject: testSubject) { [weak self] (error: Error?) in
             if let error = error {
                 print("ERROR: \(error.localizedDescription)")

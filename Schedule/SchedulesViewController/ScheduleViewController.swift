@@ -70,6 +70,11 @@ class ScheduleViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nextVC = segue.destination as? SchedulesDetailTableViewController else { return }
+        nextVC.weekNumber = weekNumber
+    }
+    
     @IBAction func onAdd(_ sender: Any) {
         self.performSegue(withIdentifier: "toSheduleDetail", sender: nil)
     }

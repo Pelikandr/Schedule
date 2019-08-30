@@ -73,6 +73,8 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
+    
     //MARK: - Private
     
     private func date(from string: String) -> Date {

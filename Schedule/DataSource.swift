@@ -96,7 +96,7 @@ class DataSource {
 //        tasksList.append(task)
 //    }
     
-    func getSubjectList(completion: @escaping (([Section]?, Error?) -> Void)) {
+    func getSubjectList(weekNumber: Int, completion: @escaping (([Section]?, Error?) -> Void)) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let `self` = self else { return }
             
@@ -117,18 +117,20 @@ class DataSource {
                             let weekDay = WeekDay(rawValue: Int(base.dayNumber)),
                             let separatorColor = base.separatorColor as? UIColor else { return nil }
 
-                        return Subject(id: id,
-                                       subjectName: subjectName,
-                                       classroom: classroom,
-                                       startTime: startTime,
-                                       endTime: endTime,
-                                       remindTime: remindTime,
-                                       proffesorName: proffesorName,
-                                       classType: classType,
-                                       note: note,
-                                       weekNumber: Int(base.weekNumber),
-                                       weekDay: weekDay,
-                                       separatorColor: separatorColor)
+                        if base.weekNumber == Int16(weekNumber) {
+                            return Subject(id: id,
+                                           subjectName: subjectName,
+                                           classroom: classroom,
+                                           startTime: startTime,
+                                           endTime: endTime,
+                                           remindTime: remindTime,
+                                           proffesorName: proffesorName,
+                                           classType: classType,
+                                           note: note,
+                                           weekNumber: Int(base.weekNumber),
+                                           weekDay: weekDay,
+                                           separatorColor: separatorColor)
+                        } else { return nil }
                     })
 
                 var sections = [Section]()

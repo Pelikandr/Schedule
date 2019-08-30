@@ -11,8 +11,10 @@ import UIKit
 class ScheduleViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var weekControl: UISegmentedControl!
+    
     private let adapter = SchedulesAdapter()
+    var weekNumber: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +38,26 @@ class ScheduleViewController: UIViewController {
         }
     }
     
+    @IBAction func weekChanged(_ sender: UISegmentedControl) {
+        switch weekControl.selectedSegmentIndex
+        {
+        case 0:
+            weekNumber = 1
+            reloadView()
+        case 1:
+            weekNumber = 2
+            reloadView()
+        default:
+            break
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         reloadView()
     }
     
     func reloadView(_ isTableViewReload: Bool = true, completion: (() -> Void)? = nil) {
-        DataSource.shared.getSubjectList { [weak self] (sectionsList, error) in
+        DataSource.shared.getSubjectList(weekNumber: weekNumber) { [weak self] (sectionsList, error) in
             if let error = error {
                 print(error)
             } else if let sectionsList = sectionsList {

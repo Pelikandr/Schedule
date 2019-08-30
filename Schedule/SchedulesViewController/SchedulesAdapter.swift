@@ -13,6 +13,7 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     private lazy var dateFormatter = DateFormatter()
     
     var sections = [Section]()
+    
 
     var onDelete: ((Subject, IndexPath) -> Void)?
     var onSubjectSelected: ((Subject) -> Void)?
@@ -70,6 +71,7 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         }
         return [deleteAction, editAction]
     }
+    
     
     //MARK: - Private
     

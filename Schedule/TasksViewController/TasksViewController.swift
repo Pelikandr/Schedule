@@ -49,7 +49,9 @@ class TasksViewController: UIViewController {
         }
     }
     
-    
+    @IBAction func onAdd(_ sender: Any) {
+        self.performSegue(withIdentifier: "toTasksDetail", sender: nil)
+    }
     
 
 

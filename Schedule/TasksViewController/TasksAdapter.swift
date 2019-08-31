@@ -10,10 +10,14 @@ import UIKit
 
 class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
+    lazy var dateFormatter = DateFormatter()
+    
     var sections = [taskSection]()
     
     var onDelete: ((Task, IndexPath) -> Void)?
     var onTaskSelected: ((Task) -> Void)?
+    
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -50,21 +54,15 @@ class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Change") { [weak self] (action, indexPath) -> Void in
-            //TODO: seague
-            guard let self = self else { return }
-            let _: Task = self.sections[indexPath.section].list[indexPath.row]
-        }
-        editAction.backgroundColor = UIColor.orange
         
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { [weak self] (action, indexPath) -> Void in
             guard let self = self else { return }
             self.onDelete?(self.sections[indexPath.section].list[indexPath.row], indexPath)
         }
-        return [deleteAction, editAction]
+        return [deleteAction]
     }
     
-    lazy var dateFormatter = DateFormatter()
+    //MARK: - Private
     private func dateString(_ date: Date) -> String {
         dateFormatter.dateFormat = "E, dd.MM"
         return dateFormatter.string(from: date)

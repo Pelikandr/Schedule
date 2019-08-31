@@ -153,6 +153,41 @@ class DataSource {
         }
     }
     
+    func updateSubject(_ subject: Subject, completion: ((Error?) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let `self` = self else { return }
+            
+            let managedContext = self.persistentContainer.newBackgroundContext()
+            
+            let request = NSFetchRequest<BaseSubject>(entityName: "BaseSubject")
+            request.predicate = NSPredicate(format: "id == [c] %@", subject.id)
+            do {
+                if let baseSubject = try managedContext.fetch(request).first {
+                    baseSubject.id = subject.id
+                    baseSubject.subjectName = subject.subjectName
+                    baseSubject.classroom = subject.classroom
+                    baseSubject.startTime = subject.startTime
+                    baseSubject.endTime = subject.endTime
+                    baseSubject.remindTime = subject.remindTime
+                    baseSubject.proffesorName = subject.proffesorName
+                    baseSubject.classType = subject.classType
+                    baseSubject.note = subject.note
+                    baseSubject.weekNumber = Int16(subject.weekNumber)
+                    baseSubject.dayNumber = Int16(subject.weekDay.rawValue)
+                    baseSubject.separatorColor = subject.separatorColor
+                    try managedContext.save()
+                    DispatchQueue.main.async {
+                        completion?(nil)
+                    }
+                } else { print("error") }
+            } catch {
+                DispatchQueue.main.async {
+                    completion?(error)
+                }
+            }
+        }
+    }
+    
     func appendSubject(subject: Subject, completion: ((Error?) -> Void)?) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let `self` = self else { return }
@@ -307,9 +342,5 @@ class DataSource {
                 }
             }
         }
-    }
-    
-    func getSubject(for weekDay: WeekDay, color: UIColor) -> Subject {
-        return Subject(id: UUID().uuidString, subjectName: "ММДС", classroom: "6.302", startTime: Date(), endTime: Date(), remindTime: Date(), proffesorName: "Полухин А. В.", classType: "Lection", note: "бла бла бла...", weekNumber: 1, weekDay: weekDay, separatorColor: color)
     }
 }

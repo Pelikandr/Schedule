@@ -13,7 +13,6 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     private lazy var dateFormatter = DateFormatter()
     
     var sections = [Section]()
-    
 
     var onDelete: ((Subject, IndexPath) -> Void)?
     var onSubjectSelected: ((Subject) -> Void)?
@@ -40,7 +39,7 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tablewView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onSubjectSelected?(sections[indexPath.section].list[indexPath.row])
+        onSubjectSelected?(sections[indexPath.section].list[indexPath.row]) 
     }
 
     func tableView(_ tablewView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,22 +57,13 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Change") { [weak self] (action, indexPath) -> Void in
-            //TODO: seague
-            guard let self = self else { return }
-            let _: Subject = self.sections[indexPath.section].list[indexPath.row]
-        }
-        editAction.backgroundColor = UIColor.orange
 
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { [weak self] (action, indexPath) -> Void in
             guard let self = self else { return }
             self.onDelete?(self.sections[indexPath.section].list[indexPath.row], indexPath)
         }
-        return [deleteAction, editAction]
+        return [deleteAction]
     }
-    
-    
-    
     
     //MARK: - Private
     

@@ -14,13 +14,23 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var weekControl: UISegmentedControl!
     
     private let adapter = SchedulesAdapter()
+    
     var weekNumber: Int = 1
+    var condition: ScheduleDetailCondition?
+    var selectedSubject: Subject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 70
+        
         tableView.delegate = adapter
         tableView.dataSource = adapter
+        
+        adapter.onSubjectSelected = { (subject: Subject) in
+            self.selectedSubject = subject
+            self.condition = .edit
+            self.performSegue(withIdentifier: "toSheduleDetail", sender: nil)
+        }
 
         adapter.onDelete = { [weak wDataSource = DataSource.shared] (subject: Subject, indexPath: IndexPath) in
             wDataSource?.removeSubject(subject: subject) { [weak self] (error: Error?) in
@@ -28,27 +38,8 @@ class ScheduleViewController: UIViewController {
                     print("ERROR: \(error.localizedDescription)")
                 } else {
                     self?.reloadView()
-                    //TODO: check if in section there will be no cells - call tableView.deleteSections method. Othervise - tableView.deleteRows
-//                    self?.reloadView(false) { [weak self] in
-//                        self?.tableView.deleteRows(at: [indexPath], with: .fade)
-//                    }
-//                    self?.tableView.deleteSections(<#T##sections: IndexSet##IndexSet#>, with: <#T##UITableView.RowAnimation#>)
                 }
             }
-        }
-    }
-    
-    @IBAction func weekChanged(_ sender: UISegmentedControl) {
-        switch weekControl.selectedSegmentIndex
-        {
-        case 0:
-            weekNumber = 1
-            reloadView()
-        case 1:
-            weekNumber = 2
-            reloadView()
-        default:
-            break
         }
     }
     
@@ -70,14 +61,31 @@ class ScheduleViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let nextVC = segue.destination as? SchedulesDetailTableViewController else { return }
-        nextVC.weekNumber = weekNumber
+
+    @IBAction func weekChanged(_ sender: UISegmentedControl) {
+        switch weekControl.selectedSegmentIndex
+        {
+        case 0:
+            weekNumber = 1
+            reloadView()
+        case 1:
+            weekNumber = 2
+            reloadView()
+        default:
+            break
+        }
     }
     
     @IBAction func onAdd(_ sender: Any) {
+        self.condition = .add
         self.performSegue(withIdentifier: "toSheduleDetail", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let nextVC = segue.destination as? SchedulesDetailTableViewController else { return }
+        nextVC.weekNumber = weekNumber
+        nextVC.condition = condition!
+        nextVC.selectedSubject = selectedSubject
+    }
 }
 

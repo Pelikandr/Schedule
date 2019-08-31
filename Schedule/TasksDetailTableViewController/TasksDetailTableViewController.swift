@@ -21,6 +21,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 44
         noteTextView.delegate = self
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))

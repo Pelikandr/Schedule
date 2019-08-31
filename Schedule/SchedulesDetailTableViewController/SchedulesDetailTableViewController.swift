@@ -39,6 +39,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 44
         noteTextView.delegate = self
         
         self.weekDayPicker.delegate = self as UIPickerViewDelegate

@@ -16,7 +16,7 @@ class ScheduleViewController: UIViewController {
     private let adapter = SchedulesAdapter()
     
     var weekNumber: Int = 1
-    var condition: ScheduleDetailCondition?
+    var condition: DetailCondition?
     var selectedSubject: Subject?
     
     override func viewDidLoad() {

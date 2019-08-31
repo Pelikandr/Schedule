@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import CoreData
 
+enum DetailCondition {
+    case add
+    case edit
+}
+
 enum WeekDay: Int {
     case monday = 0
     case tuesday
@@ -91,10 +96,8 @@ class DataSource {
         })
         return container
     }()
-
-//    func appendTask(task: Task) {
-//        tasksList.append(task)
-//    }
+    
+    //MARK: Schedule
     
     func getSubjectList(weekNumber: Int, completion: @escaping (([Section]?, Error?) -> Void)) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -244,6 +247,8 @@ class DataSource {
             }
         }
     }
+    
+    //MARK: Tasks
 
     func getTasksList(completion: @escaping (([taskSection]?, Error?) -> Void)) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -287,6 +292,36 @@ class DataSource {
             } catch {
                 DispatchQueue.main.async {
                     completion(nil, error)
+                }
+            }
+        }
+    }
+    
+    func updateTask(_ task: Task, completion: ((Error?) -> Void)?) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let `self` = self else { return }
+            
+            let managedContext = self.persistentContainer.newBackgroundContext()
+            
+            let request = NSFetchRequest<BaseTask>(entityName: "BaseTask")
+            request.predicate = NSPredicate(format: "id == [c] %@", task.id)
+            do {
+                if let baseTask = try managedContext.fetch(request).first {
+                    baseTask.id = task.id
+                    baseTask.details = task.details
+                    baseTask.subject = task.subject
+                    baseTask.finishTime = task.finishTime
+                    baseTask.remindTime = task.remindTime
+                    baseTask.isDone = task.isDone
+                    baseTask.note = task.note
+                    try managedContext.save()
+                    DispatchQueue.main.async {
+                        completion?(nil)
+                    }
+                } else { print("error") }
+            } catch {
+                DispatchQueue.main.async {
+                    completion?(error)
                 }
             }
         }

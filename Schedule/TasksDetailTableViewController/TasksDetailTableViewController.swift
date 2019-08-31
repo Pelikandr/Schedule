@@ -19,15 +19,32 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    var condition: DetailCondition?
+    var selectedTask: Task?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 44
         noteTextView.delegate = self
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
         
+        switch condition {
+        case .add?: do {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
+            }
+        case .edit?: do {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(saveButton))
+            taskTextField.text = selectedTask?.details
+            subjectTextField.text = (selectedTask?.subject)!
+            datePicker.date = (selectedTask?.finishTime)!
+            finishSwitch.isOn = (selectedTask?.isDone)!
+            noteTextView.text = (selectedTask?.note)!
+            }
+        case .none:
+            debugPrint("none")
+        }
+
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.hideKeyboardOnSwipeDown))
-        swipeDown.delegate = self as? UIGestureRecognizerDelegate
+        swipeDown.delegate = self
         swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         self.tableView.addGestureRecognizer(swipeDown)
     }
@@ -37,12 +54,27 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        let task = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Date(), isDone: finishSwitch.isOn, note: noteTextView.text!)
-        DataSource.shared.appendTask(task: task) { [weak self] (error: Error?) in
-            if let error = error {
-                print("ERROR: \(error.localizedDescription)")
+        switch condition {
+        case .add?: do {
+            let task = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Date(), isDone: finishSwitch.isOn, note: noteTextView.text!)
+            DataSource.shared.appendTask(task: task) { [weak self] (error: Error?) in
+                if let error = error {
+                    print("ERROR: \(error.localizedDescription)")
+                }
+                self?.navigationController?.popViewController(animated: true)
             }
-            self?.navigationController?.popViewController(animated: true)
+            }
+        case .edit?: do {
+            let task = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Date(), isDone: finishSwitch.isOn, note: noteTextView.text!)
+            DataSource.shared.updateTask(task) { [weak self] (error: Error?) in
+                if let error = error {
+                    print("ERROR: \(error.localizedDescription)")
+                }
+                self?.navigationController?.popViewController(animated: true)
+            }
+            }
+        case .none:
+            debugPrint("none")
         }
     }
     

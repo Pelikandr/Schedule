@@ -30,7 +30,6 @@ class ColorChoiceCell: UITableViewCell {
     }
     
     @objc func chooseColor(_ sender: UITapGestureRecognizer){
-        
         choiceView.frame.origin.x = (sender.view?.frame.origin.x)! - borderWidth
         choiceView.frame.origin.y = (sender.view?.frame.origin.y)! - borderWidth
         DataSource.shared.separatorColor = (sender.view?.backgroundColor)!

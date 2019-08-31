@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum ScheduleDetailCondition {
-    case add
-    case edit
-}
-
 class SchedulesDetailTableViewController: UITableViewController, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate {
     @IBOutlet weak var subjectNameTextField: UITextField!
     @IBOutlet weak var classroomTextField: UITextField!
@@ -27,7 +22,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     @IBOutlet weak var weekDayPicker: UIPickerView!
     
     var selectedSubject: Subject?
-    var condition: ScheduleDetailCondition?
+    var condition: DetailCondition?
     var testSubject: Subject?
     
     var pickerData: [WeekDay] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]

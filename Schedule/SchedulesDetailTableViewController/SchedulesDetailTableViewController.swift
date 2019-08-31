@@ -45,8 +45,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
         self.weekDayPicker.dataSource = self as UIPickerViewDataSource
         
         weekDayPicker.selectRow(0, inComponent: 0, animated: true)
-        
-        
+
         switch condition {
         case .add?: do {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
@@ -63,7 +62,6 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
             proffesorNameTextField.text = selectedSubject?.proffesorName
             classTypeTextField.text = selectedSubject?.classType
             noteTextView.text = selectedSubject?.note
-            DataSource.shared.separatorColor = (selectedSubject?.separatorColor)!
             }
         case .none:
             debugPrint("none")

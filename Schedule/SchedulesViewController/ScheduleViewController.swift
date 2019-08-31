@@ -86,6 +86,7 @@ class ScheduleViewController: UIViewController {
         nextVC.weekNumber = weekNumber
         nextVC.condition = condition!
         nextVC.selectedSubject = selectedSubject
+        DataSource.shared.separatorColor = (selectedSubject?.separatorColor) ?? UIColor.darkGray
     }
 }
 

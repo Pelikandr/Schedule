@@ -49,6 +49,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
             }
         case .edit?: do {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(saveButton))
+            if noteTextView.text != nil  { notePlaceholderLabel.text = "" }
             weekDay = selectedSubject?.weekDay
             testSubject = selectedSubject
             subjectNameTextField.text = selectedSubject?.subjectName
@@ -87,6 +88,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.count > 0  { notePlaceholderLabel.text = "" }
+        if textView.text.count == 0 { notePlaceholderLabel.text = "Note" }
     }
     
     @IBAction func saveButton(_ sender: Any) {

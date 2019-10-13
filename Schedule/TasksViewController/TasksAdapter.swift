@@ -58,6 +58,7 @@ class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { [weak self] (action, indexPath) -> Void in
             guard let self = self else { return }
             self.onDelete?(self.sections[indexPath.section].list[indexPath.row], indexPath)
+            //TODO: delete notifications with cell
         }
         return [deleteAction]
     }

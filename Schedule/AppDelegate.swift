@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    // MARK: - NotificationCenterDelegate
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UNUserNotificationCenter.current().delegate = self
+        // request permission from user to send notification
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { authorized, error in
+            if authorized {
+                DispatchQueue.main.async(execute: {
+                    application.registerForRemoteNotifications()
+                })
+            }
+        })
         return true
     }
 
@@ -40,7 +50,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
+
+extension AppDelegate: UNUserNotificationCenterDelegate{
+    // This function will be called when the app receive notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // show the notification alert (banner), and with sound
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    // This function will be called right after user tap on the notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let application = UIApplication.shared
+        //TODO: badge count
+        if(application.applicationState == .active){
+            print("user tapped the notification bar when the app is in foreground")
+//            ViewController.notificationCount -= 1
+//            application.applicationIconBadgeNumber -= 1
+        }
+        if(application.applicationState == .inactive)
+        {
+            print("user tapped the notification bar when the app is in background")
+//            ViewController.notificationCount -= 1
+//            application.applicationIconBadgeNumber -= 1
+        }
+        
+        /* Change root view controller to a specific viewcontroller */
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: "ViewControllerStoryboardID") as? ViewController
+//        self.window?.rootViewController = vc
+        
+        completionHandler()
+    }
+    
+}
+
 

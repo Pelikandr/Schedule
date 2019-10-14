@@ -447,7 +447,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxP-L9-XnM">
-                                                    <rect key="frame" x="20" y="19" width="32" height="17"/>
+                                                    <rect key="frame" x="20" y="23" width="32" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6705882352941176" alpha="0.6814265839041096" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -457,9 +457,9 @@
                                                 <constraint firstItem="49O-Y3-x1P" firstAttribute="leading" secondItem="1Ud-3X-bYI" secondAttribute="leading" constant="16" id="Blf-Lq-Eo2"/>
                                                 <constraint firstItem="49O-Y3-x1P" firstAttribute="top" secondItem="1Ud-3X-bYI" secondAttribute="top" constant="11" id="SNf-Md-rbx"/>
                                                 <constraint firstAttribute="trailing" secondItem="49O-Y3-x1P" secondAttribute="trailing" constant="16" id="nvf-ra-nQ2"/>
-                                                <constraint firstItem="vxP-L9-XnM" firstAttribute="top" secondItem="1Ud-3X-bYI" secondAttribute="topMargin" constant="8" id="s5i-Ab-6gE"/>
                                                 <constraint firstAttribute="bottom" secondItem="49O-Y3-x1P" secondAttribute="bottom" constant="-0.5" id="vqb-Cg-RvR"/>
-                                                <constraint firstItem="vxP-L9-XnM" firstAttribute="leading" secondItem="1Ud-3X-bYI" secondAttribute="leadingMargin" constant="4" id="yty-8O-jAA"/>
+                                                <constraint firstItem="vxP-L9-XnM" firstAttribute="leading" secondItem="1Ud-3X-bYI" secondAttribute="leadingMargin" constant="4" id="w81-uv-8yM"/>
+                                                <constraint firstItem="vxP-L9-XnM" firstAttribute="top" secondItem="1Ud-3X-bYI" secondAttribute="topMargin" constant="12" id="xig-7M-s8B"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -494,9 +494,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="NrC-J9-8jQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="NrC-J9-8jQ">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="uUx-un-QJ3" customClass="TasksCell" customModule="Shedule" customModuleProvider="target">
@@ -556,6 +555,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="NrC-J9-8jQ" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="70l-zw-x3s"/>
+                            <constraint firstItem="NrC-J9-8jQ" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="Xm7-1E-lIO"/>
+                            <constraint firstItem="NrC-J9-8jQ" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="ZX6-nv-bTU"/>
+                            <constraint firstItem="NrC-J9-8jQ" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="oAJ-hc-Xvh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" id="hwE-1D-Aff">
@@ -769,7 +774,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g35-Qa-yON">
-                                                    <rect key="frame" x="20" y="19" width="32" height="17"/>
+                                                    <rect key="frame" x="20" y="23" width="32" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6588235294" green="0.6588235294" blue="0.6705882353" alpha="0.68142658389999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -778,9 +783,9 @@
                                             <constraints>
                                                 <constraint firstItem="rll-Nj-d0A" firstAttribute="leading" secondItem="4WC-A5-wek" secondAttribute="leading" constant="16" id="08t-kC-3vv"/>
                                                 <constraint firstAttribute="trailing" secondItem="rll-Nj-d0A" secondAttribute="trailing" constant="16" id="3Ng-nt-Aqr"/>
-                                                <constraint firstItem="g35-Qa-yON" firstAttribute="leading" secondItem="4WC-A5-wek" secondAttribute="leadingMargin" constant="4" id="9bs-8k-HbL"/>
+                                                <constraint firstItem="g35-Qa-yON" firstAttribute="top" secondItem="4WC-A5-wek" secondAttribute="topMargin" constant="12" id="8ak-5j-bAH"/>
                                                 <constraint firstItem="rll-Nj-d0A" firstAttribute="top" secondItem="4WC-A5-wek" secondAttribute="top" constant="11" id="9hd-R1-53G"/>
-                                                <constraint firstItem="g35-Qa-yON" firstAttribute="top" secondItem="4WC-A5-wek" secondAttribute="topMargin" constant="8" id="tJO-uf-7aK"/>
+                                                <constraint firstItem="g35-Qa-yON" firstAttribute="leading" secondItem="4WC-A5-wek" secondAttribute="leadingMargin" constant="4" id="Ak0-Gh-u1K"/>
                                                 <constraint firstAttribute="bottom" secondItem="rll-Nj-d0A" secondAttribute="bottom" constant="-0.5" id="ur9-2P-ByD"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -805,7 +810,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="schedule" width="21" height="21"/>
-        <image name="tasks" width="21" height="21"/>
+        <image name="schedule" width="64" height="64"/>
+        <image name="tasks" width="64" height="64"/>
     </resources>
 </document>

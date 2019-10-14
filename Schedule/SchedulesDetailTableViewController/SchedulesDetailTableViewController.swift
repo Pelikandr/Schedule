@@ -59,6 +59,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
             proffesorNameTextField.text = selectedSubject?.proffesorName
             classTypeTextField.text = selectedSubject?.classType
             noteTextView.text = selectedSubject?.note
+            if noteTextView.text.count == 0 { notePlaceholderLabel.text = "Note" }
             }
         case .none:
             debugPrint("none")

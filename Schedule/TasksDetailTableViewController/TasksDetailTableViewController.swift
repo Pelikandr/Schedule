@@ -41,6 +41,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
             datePicker.date = (selectedTask?.finishTime)!
             finishSwitch.isOn = (selectedTask?.isDone)!
             noteTextView.text = (selectedTask?.note)!
+            if notePlaceholderLabel.text!.count == 0 { notePlaceholderLabel.text = "Note" }
             }
         case .none:
             debugPrint("none")

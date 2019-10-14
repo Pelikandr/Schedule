@@ -66,7 +66,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
         }
         
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.hideKeyboardOnSwipeDown))
-        swipeDown.delegate = self as! UIGestureRecognizerDelegate
+        swipeDown.delegate = self as UIGestureRecognizerDelegate
         swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         self.tableView.addGestureRecognizer(swipeDown)
     }

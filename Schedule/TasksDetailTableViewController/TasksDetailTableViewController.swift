@@ -22,7 +22,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     
     var condition: DetailCondition?
     var selectedTask: Task?
-    let userNotificationCenter = UNUserNotificationCenter.current()
+    let notificationManager = NotificationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
             datePicker.date = (selectedTask?.finishTime)!
             finishSwitch.isOn = (selectedTask?.isDone)!
             noteTextView.text = (selectedTask?.note)!
-            if notePlaceholderLabel.text!.count == 0 { notePlaceholderLabel.text = "Note" }
+            if noteTextView.text!.count == 0 { notePlaceholderLabel.text = "Note" }
             }
         case .none:
             debugPrint("none")
@@ -61,24 +61,22 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     @IBAction func saveButton(_ sender: Any) {
         switch condition {
         case .add?: do {
-            let task = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: -1, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
+            let task = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
             DataSource.shared.appendTask(task: task) { [weak self] (error: Error?) in
                 if let error = error {
                     print("ERROR: \(error.localizedDescription)")
                 }
-                self!.sendNotification(task: task)
+                self?.notificationManager.sendNotification(task: task)
                 self?.navigationController?.popViewController(animated: true)
             }
             }
         case .edit?: do {
-            let task = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: -1, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
+            let task = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
             DataSource.shared.updateTask(task) { [weak self] (error: Error?) in
                 if let error = error {
                     print("ERROR: \(error.localizedDescription)")
                 }
-                self?.userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [(self!.selectedTask?.id)!])
-                self!.userNotificationCenter.removeDeliveredNotifications(withIdentifiers: [(self!.selectedTask?.id)!])
-                self!.sendNotification(task: task)
+                self?.notificationManager.editNotification(task: task)
                 self?.navigationController?.popViewController(animated: true)
             }
             }
@@ -89,23 +87,6 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
-    }
-    
-    func sendNotification(task: Task) {
-        let triggerDate = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,], from: task.remindTime)
-        let content = UNMutableNotificationContent()
-        let podcastName = "tasks"
-        content.title = task.subject
-        content.body = "1 hour left for \(task.details)"
-        content.threadIdentifier = podcastName.lowercased()
-        content.summaryArgument = podcastName
-        content.sound = UNNotificationSound.default
-        //TODO: badge count
-        //content.badge = NSNumber(value: ViewController.notificationCount + 1 )
-        //ViewController.notificationCount += 1
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
-        let request = UNNotificationRequest(identifier: task.id, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     @objc func hideKeyboardOnSwipeDown() {

@@ -23,6 +23,7 @@
 		87B14EBE22E9E13700471C38 /* SheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B14EBD22E9E13700471C38 /* SheduleUITests.swift */; };
 		87BA493022EA1A67001AE8C9 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA492F22EA1A67001AE8C9 /* DataSource.swift */; };
 		87BA493422EA2516001AE8C9 /* SchedulesDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BA493322EA2516001AE8C9 /* SchedulesDetailTableViewController.swift */; };
+		87C72CB1235493AD000D4BD5 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C72CB0235493AD000D4BD5 /* NotificationManager.swift */; };
 		87FEEA7022F5303900612604 /* TasksAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FEEA6F22F5303900612604 /* TasksAdapter.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		87B14EBF22E9E13700471C38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87BA492F22EA1A67001AE8C9 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		87BA493322EA2516001AE8C9 /* SchedulesDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesDetailTableViewController.swift; sourceTree = "<group>"; };
+		87C72CB0235493AD000D4BD5 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		87FEEA6F22F5303900612604 /* TasksAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksAdapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				87A5A26722F2D77000FBBCB3 /* SchedulesDetailTableViewController */,
 				87FEEA6E22F52FC500612604 /* TasksViewController */,
 				878184332319DB9C005A4DF9 /* TasksDetailTableViewController */,
+				87C72CB0235493AD000D4BD5 /* NotificationManager.swift */,
 				87B14EA122E9E12A00471C38 /* Main.storyboard */,
 				871F76A822EB0D0800BC6B2E /* Recources */,
 				87B14EA622E9E13600471C38 /* LaunchScreen.storyboard */,
@@ -338,6 +341,7 @@
 				878184352319DE21005A4DF9 /* TasksDetailTableViewController.swift in Sources */,
 				66841DF322EF650700E01059 /* SheduleCell.swift in Sources */,
 				871F897D22EF0A7300BE735F /* ScheduleModel.xcdatamodeld in Sources */,
+				87C72CB1235493AD000D4BD5 /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

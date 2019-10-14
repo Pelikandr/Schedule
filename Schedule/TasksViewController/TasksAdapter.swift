@@ -16,7 +16,7 @@ class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     var onDelete: ((Task, IndexPath) -> Void)?
     var onTaskSelected: ((Task) -> Void)?
-    
+    let notificationManager = NotificationManager()
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,7 +58,10 @@ class TasksAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Delete") { [weak self] (action, indexPath) -> Void in
             guard let self = self else { return }
             self.onDelete?(self.sections[indexPath.section].list[indexPath.row], indexPath)
+            self.notificationManager.editNotification(task: self.sections[indexPath.section].list[indexPath.row])
             //TODO: delete notifications with cell
+            self.notificationManager.deleteNotification(task: self.sections[indexPath.section].list[indexPath.row])
+            
         }
         return [deleteAction]
     }

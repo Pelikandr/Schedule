@@ -59,25 +59,36 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     }
     
     @IBAction func saveButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Error", message:
+            "Enter task", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
         switch condition {
         case .add?: do {
-            let task = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
-            DataSource.shared.appendTask(task: task) { [weak self] (error: Error?) in
-                if let error = error {
-                    print("ERROR: \(error.localizedDescription)")
+            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
+            if newTask.details == "" {
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                DataSource.shared.appendTask(task: newTask) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    self?.notificationManager.sendNotification(task: newTask)
+                    self?.navigationController?.popViewController(animated: true)
                 }
-                self?.notificationManager.sendNotification(task: task)
-                self?.navigationController?.popViewController(animated: true)
             }
             }
         case .edit?: do {
-            let task = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
-            DataSource.shared.updateTask(task) { [weak self] (error: Error?) in
-                if let error = error {
-                    print("ERROR: \(error.localizedDescription)")
+            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
+            if newTask.details == "" {
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                DataSource.shared.updateTask(newTask) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    self?.notificationManager.editNotification(task: newTask)
+                    self?.navigationController?.popViewController(animated: true)
                 }
-                self?.notificationManager.editNotification(task: task)
-                self?.navigationController?.popViewController(animated: true)
             }
             }
         case .none:

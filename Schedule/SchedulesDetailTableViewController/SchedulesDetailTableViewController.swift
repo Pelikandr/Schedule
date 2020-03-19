@@ -93,25 +93,37 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     }
     
     @IBAction func saveButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Error", message:
+            "Enter name and class type", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
         switch condition {
         case .add?: do {
             newSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800) , remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!, weekDay: weekDay!, separatorColor: DataSource.shared.separatorColor )
-            DataSource.shared.appendSubject(subject: newSubject!) { [weak self] (error: Error?) in
-                if let error = error {
-                    print("ERROR: \(error.localizedDescription)")
+            if newSubject?.subjectName == "" || newSubject?.classType == "" {
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                DataSource.shared.appendSubject(subject: newSubject!) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    self?.navigationController?.popViewController(animated: true)
                 }
-                self?.navigationController?.popViewController(animated: true)
             }
+            
             }
         case .edit?: do {
             newSubject = Subject(id: (selectedSubject?.id)!, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800), remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!,
                                   weekDay: weekDay!,
                                   separatorColor: DataSource.shared.separatorColor )
-            DataSource.shared.updateSubject(newSubject!) { [weak self] (error: Error?) in
-                if let error = error {
-                    print("ERROR: \(error.localizedDescription)")
+            if newSubject?.subjectName == "" || newSubject?.classType == "" {
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                DataSource.shared.updateSubject(newSubject!) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    self?.navigationController?.popViewController(animated: true)
                 }
-                self?.navigationController?.popViewController(animated: true)
             }
             }
         case .none:

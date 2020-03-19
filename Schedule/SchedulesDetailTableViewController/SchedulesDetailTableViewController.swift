@@ -23,7 +23,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     
     var selectedSubject: Subject?
     var condition: DetailCondition?
-    var testSubject: Subject?
+    var newSubject: Subject?
     
     var pickerData: [WeekDay] = [.monday, .tuesday, .wednesday, .thursday, .friday, .saturday, .sunday]
     var weekDay: WeekDay?
@@ -51,7 +51,7 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(saveButton))
             if noteTextView.text != nil  { notePlaceholderLabel.text = "" }
             weekDay = selectedSubject?.weekDay
-            testSubject = selectedSubject
+            newSubject = selectedSubject
             subjectNameTextField.text = selectedSubject?.subjectName
             classroomTextField.text = selectedSubject?.classroom
             timePicker.date = (selectedSubject?.startTime)!
@@ -95,8 +95,8 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
     @IBAction func saveButton(_ sender: Any) {
         switch condition {
         case .add?: do {
-            testSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800) , remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!, weekDay: weekDay!, separatorColor: DataSource.shared.separatorColor )
-            DataSource.shared.appendSubject(subject: testSubject!) { [weak self] (error: Error?) in
+            newSubject = Subject(id: UUID().uuidString, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800) , remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!, weekDay: weekDay!, separatorColor: DataSource.shared.separatorColor )
+            DataSource.shared.appendSubject(subject: newSubject!) { [weak self] (error: Error?) in
                 if let error = error {
                     print("ERROR: \(error.localizedDescription)")
                 }
@@ -104,10 +104,10 @@ class SchedulesDetailTableViewController: UITableViewController, UITextViewDeleg
             }
             }
         case .edit?: do {
-            testSubject = Subject(id: (selectedSubject?.id)!, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800), remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!,
+            newSubject = Subject(id: (selectedSubject?.id)!, subjectName: subjectNameTextField.text!, classroom: classroomTextField.text!, startTime: timePicker.date, endTime: timePicker.date.addingTimeInterval(4800), remindTime: Date(), proffesorName: proffesorNameTextField.text!, classType: classTypeTextField.text!, note: noteTextView.text, weekNumber: weekNumber!,
                                   weekDay: weekDay!,
                                   separatorColor: DataSource.shared.separatorColor )
-            DataSource.shared.updateSubject(testSubject!) { [weak self] (error: Error?) in
+            DataSource.shared.updateSubject(newSubject!) { [weak self] (error: Error?) in
                 if let error = error {
                     print("ERROR: \(error.localizedDescription)")
                 }

@@ -47,8 +47,11 @@ class SchedulesAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
 
         let cell = tablewView.dequeueReusableCell(withIdentifier: "SheduleCell", for: indexPath) as! SheduleCell
         cell.subjectNameLabel.text = subject.subjectName
-        // TODO: check if classType is empty
-        cell.classroomTypeLabel.text = subject.classroom + ", " + subject.classType
+        if subject.classroom == "" || subject.classType == "" {
+            cell.classroomTypeLabel.text = subject.classroom + subject.classType
+        } else {
+                cell.classroomTypeLabel.text = subject.classroom + ", " + subject.classType
+        }
         cell.startTimeLabel.text = timeString(subject.startTime)
         cell.endTimeLabel.text = timeString(subject.endTime)
         cell.proffesorNameLabel.text = subject.proffesorName

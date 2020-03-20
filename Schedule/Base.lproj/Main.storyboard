@@ -784,14 +784,14 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="kK6-Sq-r56">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="159" id="kkg-gq-KoY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="displayImage" rowHeight="159" id="kkg-gq-KoY" customClass="ImageTableViewCell" customModule="Shedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="553" width="375" height="159"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kkg-gq-KoY" id="pqF-eT-QMH">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="159"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TTR-bA-TpM">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app" translatesAutoresizingMaskIntoConstraints="NO" id="TTR-bA-TpM">
                                                     <rect key="frame" x="21" y="16" width="333" height="127"/>
                                                 </imageView>
                                             </subviews>
@@ -824,6 +824,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="app" width="64" height="64"/>
         <image name="schedule" width="21.333333969116211" height="21.333333969116211"/>
         <image name="tasks" width="21.333333969116211" height="21.333333969116211"/>
         <namedColor name="DarkColor">

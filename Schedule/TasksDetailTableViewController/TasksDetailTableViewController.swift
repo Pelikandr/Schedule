@@ -8,8 +8,9 @@
 
 import UIKit
 import UserNotifications
+import SVProgressHUD
 
-class TasksDetailTableViewController: UITableViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UNUserNotificationCenterDelegate {
+class TasksDetailTableViewController: UITableViewController, UITextViewDelegate, UIGestureRecognizerDelegate, UNUserNotificationCenterDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var subjectTextField: UITextField!
@@ -23,6 +24,8 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     @IBOutlet weak var pictureImageView: UIImageView!
     var condition: DetailCondition?
     var selectedTask: Task?
+    var selectedImage: UIImage?
+    
     let notificationManager = NotificationManager()
     
     override func viewDidLoad() {
@@ -67,7 +70,71 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         print("tapped")
+        let alert = UIAlertController(title: "Choose image source", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallery()
+        }))
 
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        self.present(alert, animated: true) {
+            self.tapRecognizer(alert: alert)
+        }
+    }
+    
+    func openGallery() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            SVProgressHUD.showError(withStatus: "You don't have permission to access gallery")
+        }
+    }
+    
+    func openCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            SVProgressHUD.showError(withStatus: "You don't have permission to access camera")
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[.editedImage] as? UIImage {
+            self.selectedImage = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            self.selectedImage = originalImage
+        }
+        pictureImageView.image = self.selectedImage
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    //
+    //        dismiss(animated: true, completion: nil)
+    //
+    //
+    //    }
+    
+    func tapRecognizer(alert: UIAlertController) {
+        alert.view.superview?.subviews.first?.isUserInteractionEnabled = true
+        alert.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+    }
+    
+    @objc func actionSheetBackgroundTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -81,7 +148,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         switch condition {
         case .add?: do {
-            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: UIImage(named: "sample")!.pngData() ?? nil)
+            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: self.selectedImage!.pngData() ?? nil)
             if newTask.details == "" {
                 self.present(alertController, animated: true, completion: nil)
             } else {
@@ -95,7 +162,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
             }
             }
         case .edit?: do {
-            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: UIImage(named: "sample")!.pngData() ?? nil)
+            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: pictureImageView.image?.pngData() ?? nil)
             if newTask.details == "" {
                 self.present(alertController, animated: true, completion: nil)
             } else {

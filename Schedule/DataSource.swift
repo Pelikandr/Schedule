@@ -77,6 +77,7 @@ struct Task {
     let remindTime: Date
     let isDone: Bool
     let note: String
+    let photo: UIImage?
 }
 
 class DataSource {
@@ -273,7 +274,8 @@ class DataSource {
                                     finishTime: finishTime,
                                     remindTime: remindTime,
                                     isDone: isDone,
-                                    note: note )
+                                    note: note,
+                                    photo: UIImage(named: " ") ?? nil )
                     })
                 var sections = [taskSection]()
                 if let isDone = false as Bool?{

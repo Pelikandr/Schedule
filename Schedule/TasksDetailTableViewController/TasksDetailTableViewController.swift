@@ -64,7 +64,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         switch condition {
         case .add?: do {
-            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
+            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: UIImage(named: "") ?? nil)
             if newTask.details == "" {
                 self.present(alertController, animated: true, completion: nil)
             } else {
@@ -78,7 +78,7 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
             }
             }
         case .edit?: do {
-            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!)
+            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: UIImage(named: "") ?? nil)
             if newTask.details == "" {
                 self.present(alertController, animated: true, completion: nil)
             } else {

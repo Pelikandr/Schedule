@@ -317,6 +317,7 @@ class DataSource {
                     baseTask.remindTime = task.remindTime
                     baseTask.isDone = task.isDone
                     baseTask.note = task.note
+                    baseTask.photo = task.photo
                     try managedContext.save()
                     DispatchQueue.main.async {
                         completion?(nil)

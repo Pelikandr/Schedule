@@ -14,14 +14,12 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
 
     @IBOutlet weak var taskTextField: UITextField!
     @IBOutlet weak var subjectTextField: UITextField!
-
     @IBOutlet weak var finishSwitch: UISwitch!
     @IBOutlet weak var noteTextView: UITextView!
     @IBOutlet weak var notePlaceholderLabel: UILabel!
-    
     @IBOutlet weak var datePicker: UIDatePicker!
-    
     @IBOutlet weak var pictureImageView: UIImageView!
+    
     var condition: DetailCondition?
     var selectedTask: Task?
     
@@ -66,6 +64,46 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
         self.tableView.addGestureRecognizer(swipeDown)
     }
     
+    @IBAction func saveButton(_ sender: Any) {
+        let alertController = UIAlertController(title: "Error", message:
+            "Enter task", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        switch condition {
+        case .add?: do {
+            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: pictureImageView.image?.pngData())
+            if newTask.details == "" {
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                DataSource.shared.appendTask(task: newTask) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    self?.notificationManager.sendNotification(task: newTask)
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+            }
+        case .edit?: do {
+            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: pictureImageView.image?.pngData())
+            if newTask.details == "" {
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                DataSource.shared.updateTask(newTask) { [weak self] (error: Error?) in
+                    if let error = error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    self?.notificationManager.editNotification(task: newTask)
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
+            }
+        case .none:
+            debugPrint("none")
+        }
+    }
+    
+    //MARK: - Photo
+
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         print("tapped")
@@ -80,6 +118,15 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
         self.present(alert, animated: true) {
             self.tapRecognizer(alert: alert)
         }
+    }
+    
+    func tapRecognizer(alert: UIAlertController) {
+        alert.view.superview?.subviews.first?.isUserInteractionEnabled = true
+        alert.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
+    }
+    
+    @objc func actionSheetBackgroundTapped() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     func openGallery() {
@@ -126,56 +173,12 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     //
     //    }
     
-    func tapRecognizer(alert: UIAlertController) {
-        alert.view.superview?.subviews.first?.isUserInteractionEnabled = true
-        alert.view.superview?.subviews.first?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.actionSheetBackgroundTapped)))
-    }
-    
-    @objc func actionSheetBackgroundTapped() {
-        self.dismiss(animated: true, completion: nil)
-    }
+    //MARK: - Other
+
     
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.count > 0  { notePlaceholderLabel.text = "" }
         if textView.text.count == 0 { notePlaceholderLabel.text = "Note" }
-    }
-    
-    @IBAction func saveButton(_ sender: Any) {
-        let alertController = UIAlertController(title: "Error", message:
-            "Enter task", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        switch condition {
-        case .add?: do {
-            let newTask = Task(id: UUID().uuidString, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: pictureImageView.image?.pngData())
-            if newTask.details == "" {
-                self.present(alertController, animated: true, completion: nil)
-            } else {
-                DataSource.shared.appendTask(task: newTask) { [weak self] (error: Error?) in
-                    if let error = error {
-                        print("ERROR: \(error.localizedDescription)")
-                    }
-                    self?.notificationManager.sendNotification(task: newTask)
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            }
-            }
-        case .edit?: do {
-            let newTask = Task(id: (selectedTask?.id)!, details: taskTextField.text!, subject: subjectTextField.text!, finishTime: datePicker.date, remindTime: Calendar.current.date(byAdding: .minute, value: 0, to: datePicker.date)!, isDone: finishSwitch.isOn, note: noteTextView.text!, photo: pictureImageView.image?.pngData())
-            if newTask.details == "" {
-                self.present(alertController, animated: true, completion: nil)
-            } else {
-                DataSource.shared.updateTask(newTask) { [weak self] (error: Error?) in
-                    if let error = error {
-                        print("ERROR: \(error.localizedDescription)")
-                    }
-                    self?.notificationManager.editNotification(task: newTask)
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            }
-            }
-        case .none:
-            debugPrint("none")
-        }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -185,5 +188,5 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
     @objc func hideKeyboardOnSwipeDown() {
         view.endEditing(true)
     }
-
+    
 }

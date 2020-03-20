@@ -30,6 +30,10 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
         tableView.rowHeight = 44
         noteTextView.delegate = self
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        pictureImageView.isUserInteractionEnabled = true
+        pictureImageView.addGestureRecognizer(tapGestureRecognizer)
+        
         switch condition {
         case .add?: do {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveButton))
@@ -58,6 +62,12 @@ class TasksDetailTableViewController: UITableViewController, UITextViewDelegate,
         swipeDown.delegate = self
         swipeDown.direction =  UISwipeGestureRecognizer.Direction.down
         self.tableView.addGestureRecognizer(swipeDown)
+    }
+    
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        print("tapped")
+
     }
     
     func textViewDidChange(_ textView: UITextView) {

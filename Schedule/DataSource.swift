@@ -77,7 +77,7 @@ struct Task {
     let remindTime: Date
     let isDone: Bool
     let note: String
-    let photo: UIImage?
+    let photo: Data?
 }
 
 class DataSource {
@@ -266,8 +266,9 @@ class DataSource {
                             let finishTime = base.finishTime,
                             let remindTime = base.remindTime,
                             let isDone = base.isDone as Bool?,
-                            let note = base.note else { return nil }
-                        
+                            let note = base.note,
+                            let photo = base.photo else { return nil }
+                            
                         return Task(id: id,
                                     details: details,
                                     subject: subject,
@@ -275,7 +276,7 @@ class DataSource {
                                     remindTime: remindTime,
                                     isDone: isDone,
                                     note: note,
-                                    photo: UIImage(named: " ") ?? nil )
+                                    photo: photo)
                     })
                 var sections = [taskSection]()
                 if let isDone = false as Bool?{
@@ -343,7 +344,7 @@ class DataSource {
             baseTask.remindTime = task.remindTime
             baseTask.isDone = task.isDone
             baseTask.note = task.note
-            
+            baseTask.photo = task.photo
             do {
                 try managedContext.save()
                 DispatchQueue.main.async {
